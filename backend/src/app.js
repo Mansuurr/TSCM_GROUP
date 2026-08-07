@@ -8,6 +8,9 @@ const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/user.routes')
 const requestRoutes = require('./routes/request.routes')
 const errorMiddleware = require('./middleware/error.middleware')
+const serviceRoutes = require('./routes/service.routes')
+const pricingRoutes = require('./routes/pricing.routes')
+const quizRoutes = require('./routes/quiz.routes')
 
 const app = express()
 
@@ -53,6 +56,10 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use(errorMiddleware)
+
+app.use('/api/services', serviceRoutes)
+app.use('/api/pricing', pricingRoutes)
+app.use('/api/quiz', quizRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
