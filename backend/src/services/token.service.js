@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const prisma = require('../config/db')
+const crypto = require('crypto')
 
 const tokenService = {
   generateTokens(payload) {
@@ -12,12 +13,18 @@ const tokenService = {
     return { accessToken, refreshToken }
   },
 
-  async saveRefreshToken(userId, token) {
+  getFingerprint(req) {
+    // Создаём хеш от IP + User-Agent
+    const data = (req.ip || '') + (req.headers['user-agent'] || '')
+    return crypto.createHash('sha256').update(data).digest('hex')
+  },
+
+  async saveRefreshToken(userId, token, fingerprint) {
     const expiresAt = new Date()
     expiresAt.setDate(expiresAt.getDate() + 7)
     await prisma.refreshToken.deleteMany({ where: { userId } })
     return prisma.refreshToken.create({
-      data: { token, userId, expiresAt },
+      data: { token, userId, fingerprint, expiresAt },
     })
   },
 

@@ -10,13 +10,13 @@ const COOKIE_OPTIONS = {
 
 const authController = {
   register: asyncHandler(async (req, res) => {
-    const result = await authService.register(req.body)
+    const result = await authService.register(req.body, req)
     res.cookie('refreshToken', result.refreshToken, COOKIE_OPTIONS)
     res.status(201).json({ user: result.user, accessToken: result.accessToken })
   }),
 
   login: asyncHandler(async (req, res) => {
-    const result = await authService.login(req.body)
+    const result = await authService.login(req.body, req)
     res.cookie('refreshToken', result.refreshToken, COOKIE_OPTIONS)
     res.json({ user: result.user, accessToken: result.accessToken })
   }),
@@ -30,7 +30,7 @@ const authController = {
 
   refresh: asyncHandler(async (req, res) => {
     const { refreshToken } = req.cookies
-    const result = await authService.refresh(refreshToken)
+    const result = await authService.refresh(refreshToken, req)
     res.cookie('refreshToken', result.refreshToken, COOKIE_OPTIONS)
     res.json({ user: result.user, accessToken: result.accessToken })
   }),

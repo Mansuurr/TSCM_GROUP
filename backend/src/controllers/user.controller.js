@@ -71,8 +71,9 @@ const userController = {
       err.status = 400
       throw err
     }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 10)
+    
+    
+    const hashedPassword = await bcrypt.hash(newPassword, 12)
     await prisma.user.update({ where: { id }, data: { password: hashedPassword } })
     res.json({ message: 'Пароль изменён' })
   }),

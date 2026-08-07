@@ -15,7 +15,7 @@ const loginSchema = z.object({
 })
 
 const authService = {
-  async register(data) {
+  async register(data, req) {
     const parsed = registerSchema.parse(data)
     const existing = await prisma.user.findUnique({ where: { email: parsed.email } })
     if (existing) {
@@ -24,7 +24,7 @@ const authService = {
       throw err
     }
 
-    const hashedPassword = await bcrypt.hash(parsed.password, 10)
+    const hashedPassword = await bcrypt.hash(parsed.password, 12)
     const user = await prisma.user.create({
       data: {
         email: parsed.email,
@@ -35,12 +35,13 @@ const authService = {
     })
 
     const tokens = tokenService.generateTokens({ userId: user.id, email: user.email, role: user.role })
-    await tokenService.saveRefreshToken(user.id, tokens.refreshToken)
+    const fingerprint = tokenService.getFingerprint(req)
+    await tokenService.saveRefreshToken(user.id, tokens.refreshToken, fingerprint)
 
     return { user, ...tokens }
   },
 
-  async login(data) {
+  async login(data, req) {
     const parsed = loginSchema.parse(data)
     const user = await prisma.user.findUnique({ where: { email: parsed.email } })
     if (!user) {
@@ -57,7 +58,8 @@ const authService = {
     }
 
     const tokens = tokenService.generateTokens({ userId: user.id, email: user.email, role: user.role })
-    await tokenService.saveRefreshToken(user.id, tokens.refreshToken)
+    const fingerprint = tokenService.getFingerprint(req)
+    await tokenService.saveRefreshToken(user.id, tokens.refreshToken, fingerprint)
 
     return {
       user: { id: user.id, email: user.email, name: user.name, role: user.role },
@@ -70,7 +72,7 @@ const authService = {
     await tokenService.removeRefreshToken(refreshToken)
   },
 
-  async refresh(refreshToken) {
+  async refresh(refreshToken, req) {
     if (!refreshToken) {
       const err = new Error('Не авторизован')
       err.status = 401
@@ -86,13 +88,23 @@ const authService = {
       throw err
     }
 
+    // Проверяем fingerprint
+    const currentFingerprint = tokenService.getFingerprint(req)
+    if (tokenFromDb.fingerprint && tokenFromDb.fingerprint !== currentFingerprint) {
+      await tokenService.removeRefreshToken(refreshToken)
+      const err = new Error('Сессия скомпрометирована. Войдите заново.')
+      err.status = 401
+      throw err
+    }
+
     const user = await prisma.user.findUnique({
       where: { id: tokenData.userId },
       select: { id: true, email: true, name: true, role: true },
     })
 
     const tokens = tokenService.generateTokens({ userId: user.id, email: user.email, role: user.role })
-    await tokenService.saveRefreshToken(user.id, tokens.refreshToken)
+    const fingerprint = tokenService.getFingerprint(req)
+    await tokenService.saveRefreshToken(user.id, tokens.refreshToken, fingerprint)
 
     return { user, ...tokens }
   },
