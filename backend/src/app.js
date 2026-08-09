@@ -11,6 +11,7 @@ const errorMiddleware = require('./middleware/error.middleware')
 const serviceRoutes = require('./routes/service.routes')
 const pricingRoutes = require('./routes/pricing.routes')
 const quizRoutes = require('./routes/quiz.routes')
+const settingsRoutes = require('./routes/settings.routes')
 
 const app = express()
 
@@ -58,6 +59,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/services', serviceRoutes)
 app.use('/api/pricing', pricingRoutes)
 app.use('/api/quiz', quizRoutes)
+app.use('/api/settings', settingsRoutes)  
 app.use(errorMiddleware)
 
 const PORT = process.env.PORT || 3000
