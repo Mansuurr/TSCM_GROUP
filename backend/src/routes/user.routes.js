@@ -3,6 +3,7 @@ const router = express.Router()
 const userController = require('../controllers/user.controller')
 const { authMiddleware, adminMiddleware } = require('../middleware/auth.middleware')
 
+router.post('/', authMiddleware, adminMiddleware, userController.create)
 router.get('/', authMiddleware, adminMiddleware, userController.getAll)
 router.get('/:id', authMiddleware, userController.getById)
 router.put('/:id', authMiddleware, userController.update)
