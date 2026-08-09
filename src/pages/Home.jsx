@@ -50,7 +50,6 @@ export default function Home() {
       return
     }
 
-    // последний вопрос — отправляем результат на бэк
     setQuizLoading(true)
     setQuizError(null)
     try {

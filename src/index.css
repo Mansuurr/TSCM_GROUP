@@ -47,7 +47,6 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* Анимированная сетка фона */
 .bg-grid {
   background-size: 60px 60px;
   background-image:
@@ -75,7 +74,6 @@ body {
   );
 }
 
-/* Glow orb */
 .glow-orb {
   position: absolute;
   width: 600px;
@@ -106,7 +104,6 @@ body {
   }
 }
 
-/* Спотлайт-эффект на карточках: мягкое свечение, следующее за курсором */
 .spotlight-card {
   position: relative;
   isolation: isolate;
@@ -132,7 +129,6 @@ body {
   opacity: 1;
 }
 
-/* Тонкая подсветка границы вслед за курсором */
 .spotlight-card::after {
   content: '';
   position: absolute;
