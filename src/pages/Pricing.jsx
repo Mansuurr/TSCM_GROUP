@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
+import { useSettings } from '../hooks/useSettings'
 
 const plans = [
-  { name: 'Экспресс', price: '15 000 ₸', period: 'до 50 м²', features: ['Визуальный осмотр', 'РЧ сканирование', 'Проверка на камеры'], popular: false },
-  { name: 'Стандарт', price: '35 000 ₸', period: 'до 100 м²', features: ['Полный TSCM-аудит', 'Акустические каналы', 'Тепловизор', 'Письменное заключение'], popular: true },
-  { name: 'Премиум', price: '80 000 ₸', period: 'комплекс', features: ['Всё из Стандарта', 'Проверка авто', 'Анализ сетей', 'NDA', 'Выезд 24/7'], popular: false },
+  { name: 'Экспресс', priceKey: 'expressPrice', period: 'до 50 м²', features: ['Визуальный осмотр', 'РЧ сканирование', 'Проверка на камеры'], popular: false },
+  { name: 'Стандарт', priceKey: 'standardPrice', period: 'до 100 м²', features: ['Полный TSCM-аудит', 'Акустические каналы', 'Тепловизор', 'Письменное заключение'], popular: true },
+  { name: 'Премиум', priceKey: 'premiumPrice', period: 'комплекс', features: ['Всё из Стандарта', 'Проверка авто', 'Анализ сетей', 'NDA', 'Выезд 24/7'], popular: false },
 ]
 
 export default function Pricing() {
+  const { data: settings } = useSettings()
+
   const handleCardMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
@@ -31,7 +34,7 @@ export default function Pricing() {
           >
             {plan.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1 text-xs font-medium text-black">Популярный</span>}
             <h3 className="text-lg font-medium text-white">{plan.name}</h3>
-            <p className="mt-2 text-3xl font-light text-white">{plan.price}</p>
+            <p className="mt-2 text-3xl font-light text-white">{settings?.[plan.priceKey] ?? '...'}</p>
             <p className="text-sm text-[#666]">{plan.period}</p>
             <ul className="mt-6 space-y-3">
               {plan.features.map(f => (

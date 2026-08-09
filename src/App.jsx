@@ -9,6 +9,9 @@ import Pricing from './pages/Pricing'
 import Gallery from './pages/Gallery'
 import Contacts from './pages/Contacts'
 import Request from './pages/Request'
+import AdminLogin from './pages/admin/AdminLogin'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import ProtectedAdminRoute from './components/admin/ProtectedAdminRoute'
 
 function App() {
   return (
@@ -23,6 +26,11 @@ function App() {
             <Route path="gallery" element={<Gallery />} />
             <Route path="contacts" element={<Contacts />} />
             <Route path="request" element={<Request />} />
+          </Route>
+
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route element={<ProtectedAdminRoute />}>
+            <Route path="/admin" element={<AdminDashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
