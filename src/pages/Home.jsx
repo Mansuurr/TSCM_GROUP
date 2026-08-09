@@ -83,6 +83,29 @@ export default function Home() {
     e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
   }
 
+  const [requestForm, setRequestForm] = useState({ name: '', phone: '', type: 'Квартира', description: '' })
+  const [requestSent, setRequestSent] = useState(false)
+  const [requestLoading, setRequestLoading] = useState(false)
+  const [requestError, setRequestError] = useState(null)
+
+  const handleRequestChange = (field) => (e) => {
+    setRequestForm({ ...requestForm, [field]: e.target.value })
+  }
+
+  const handleRequestSubmit = async (e) => {
+    e.preventDefault()
+    setRequestLoading(true)
+    setRequestError(null)
+    try {
+      await api.post('/requests', requestForm)
+      setRequestSent(true)
+    } catch (err) {
+      setRequestError('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам напрямую.')
+    } finally {
+      setRequestLoading(false)
+    }
+  }
+
   return (
     <div className="relative w-full">
       {/* Фон */}
@@ -282,33 +305,67 @@ export default function Home() {
                 <h2 className="text-center text-2xl font-light text-white md:text-3xl">Заказать конфиденциальную проверку</h2>
                 <p className="mt-4 text-center text-sm text-[#666]">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
 
-                <form className="mt-12 space-y-5">
-                  <div>
-                    <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Ваше имя или псевдоним</label>
-                    <input required className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]" placeholder="Иван" />
-                  </div>
-                  <div>
-                    <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Телефон для связи</label>
-                    <input required type="tel" className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]" placeholder="+7 999 000-00-00" />
-                  </div>
-                  <div>
-                    <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Что нужно проверить</label>
-                    <select className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors focus:border-[#444]">
-                      <option>Квартира</option>
-                      <option>Офис</option>
-                      <option>Автомобиль</option>
-                      <option>Другое</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Краткое описание ситуации</label>
-                    <textarea rows={4} className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]" placeholder="Подозреваю прослушку в переговорной..." />
-                  </div>
-                  <button type="submit" className="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-transform hover:scale-[1.02]">
-                    Вызвать специалистов
-                  </button>
-                  <p className="text-center text-[11px] text-[#333]">Все обращения строго конфиденциальны. Данные не передаются третьим лицам и удаляются сразу после выполнения заказа.</p>
-                </form>
+                {requestSent ? (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-12 rounded-xl border border-[#333] bg-[#111] p-8 text-center">
+                    <p className="text-sm text-white">Заявка отправлена. Мы скоро свяжемся с вами.</p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleRequestSubmit} className="mt-12 space-y-5">
+                    <div>
+                      <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Ваше имя или псевдоним</label>
+                      <input
+                        required
+                        value={requestForm.name}
+                        onChange={handleRequestChange('name')}
+                        className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]"
+                        placeholder="Иван"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Телефон для связи</label>
+                      <input
+                        required
+                        type="tel"
+                        value={requestForm.phone}
+                        onChange={handleRequestChange('phone')}
+                        className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]"
+                        placeholder="+7 999 000-00-00"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Что нужно проверить</label>
+                      <select
+                        value={requestForm.type}
+                        onChange={handleRequestChange('type')}
+                        className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors focus:border-[#444]"
+                      >
+                        <option>Квартира</option>
+                        <option>Офис</option>
+                        <option>Автомобиль</option>
+                        <option>Другое</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-[11px] font-medium uppercase tracking-wider text-[#444]">Краткое описание ситуации</label>
+                      <textarea
+                        rows={4}
+                        value={requestForm.description}
+                        onChange={handleRequestChange('description')}
+                        className="w-full rounded-xl border border-[#222] bg-[#111] px-5 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-[#333] focus:border-[#444]"
+                        placeholder="Подозреваю прослушку в переговорной..."
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={requestLoading}
+                      className="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-transform hover:scale-[1.02] disabled:opacity-50"
+                    >
+                      {requestLoading ? 'Отправляем...' : 'Вызвать специалистов'}
+                    </button>
+                    {requestError && <p className="text-center text-xs text-red-400">{requestError}</p>}
+                    <p className="text-center text-[11px] text-[#333]">Все обращения строго конфиденциальны. Данные не передаются третьим лицам и удаляются сразу после выполнения заказа.</p>
+                  </form>
+                )}
               </div>
             </motion.div>
           </div>

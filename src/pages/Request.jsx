@@ -1,12 +1,31 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import api from '../services/api'
+
+const initialForm = { name: '', phone: '', type: 'Квартира', description: '' }
 
 export default function Request() {
+  const [form, setForm] = useState(initialForm)
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const handleSubmit = (e) => {
+  const handleChange = (field) => (e) => {
+    setForm({ ...form, [field]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setError(null)
+    try {
+      await api.post('/requests', form)
+      setSent(true)
+    } catch (err) {
+      setError('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам напрямую.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -30,15 +49,32 @@ export default function Request() {
         >
           <div>
             <label className="mb-2 block text-xs uppercase tracking-wider text-[#555]">Имя или псевдоним</label>
-            <input required className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]" placeholder="Иван" />
+            <input
+              required
+              value={form.name}
+              onChange={handleChange('name')}
+              className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]"
+              placeholder="Иван"
+            />
           </div>
           <div>
             <label className="mb-2 block text-xs uppercase tracking-wider text-[#555]">Телефон</label>
-            <input required type="tel" className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]" placeholder="+7 999 000-00-00" />
+            <input
+              required
+              type="tel"
+              value={form.phone}
+              onChange={handleChange('phone')}
+              className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]"
+              placeholder="+7 999 000-00-00"
+            />
           </div>
           <div>
             <label className="mb-2 block text-xs uppercase tracking-wider text-[#555]">Что нужно проверить</label>
-            <select className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]">
+            <select
+              value={form.type}
+              onChange={handleChange('type')}
+              className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]"
+            >
               <option>Квартира</option>
               <option>Офис</option>
               <option>Автомобиль</option>
@@ -47,11 +83,22 @@ export default function Request() {
           </div>
           <div>
             <label className="mb-2 block text-xs uppercase tracking-wider text-[#555]">Описание ситуации</label>
-            <textarea rows={4} className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]" placeholder="Кратко опишите..." />
+            <textarea
+              rows={4}
+              value={form.description}
+              onChange={handleChange('description')}
+              className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-3 text-white outline-none transition-colors focus:border-[#444]"
+              placeholder="Кратко опишите..."
+            />
           </div>
-          <button type="submit" className="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-transform hover:scale-[1.02]">
-            Отправить запрос
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-transform hover:scale-[1.02] disabled:opacity-50"
+          >
+            {loading ? 'Отправляем...' : 'Отправить запрос'}
           </button>
+          {error && <p className="text-center text-xs text-red-400">{error}</p>}
           <p className="text-center text-xs text-[#333]">Все обращения строго конфиденциальны</p>
         </motion.form>
       )}
