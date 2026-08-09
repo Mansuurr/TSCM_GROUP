@@ -55,11 +55,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-app.use(errorMiddleware)
-
 app.use('/api/services', serviceRoutes)
 app.use('/api/pricing', pricingRoutes)
 app.use('/api/quiz', quizRoutes)
+app.use(errorMiddleware)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

@@ -1,25 +1,29 @@
 import { QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { queryClient } from './lib/query-client'
-
-const Home = () => (
-  <div className="flex min-h-screen flex-col items-center justify-center px-6">
-    <h1 className="text-center text-5xl font-light tracking-tight text-white sm:text-7xl">
-      TSCM Group
-    </h1>
-    <p className="mt-6 text-center text-lg text-[var(--color-text-muted)]">
-      Минимализм. Технологии. Будущее.
-    </p>
-    <div className="mt-10 h-px w-16 bg-[var(--color-border)]" />
-  </div>
-)
+import Layout from './components/layout/Layout'
+import Home from './pages/Home'
+import Services from './pages/Services'
+import ServiceDetail from './pages/ServiceDetail'
+import Pricing from './pages/Pricing'
+import Gallery from './pages/Gallery'
+import Contacts from './pages/Contacts'
+import Request from './pages/Request'
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="services" element={<Services />} />
+            <Route path="services/:slug" element={<ServiceDetail />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="request" element={<Request />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
