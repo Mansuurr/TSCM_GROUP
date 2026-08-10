@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const prisma = new PrismaClient()
 
 async function main() {
-  // 1. Создаём админа если нет
+
   const adminExists = await prisma.user.findUnique({ where: { email: 'admin@tscm.com' } })
   if (!adminExists) {
     await prisma.user.create({
@@ -18,7 +18,6 @@ async function main() {
     console.log('✅ Admin created: admin@tscm.com / admin12345')
   }
 
-  // 2. Заполняем услуги если пусто
   const servicesCount = await prisma.service.count()
   if (servicesCount === 0) {
     await prisma.service.createMany({
@@ -68,7 +67,7 @@ async function main() {
     console.log('✅ Services seeded')
   }
 
-  // 3. Заполняем тарифы если пусто
+
   const pricingCount = await prisma.pricing.count()
   if (pricingCount === 0) {
     await prisma.pricing.createMany({

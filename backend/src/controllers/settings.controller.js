@@ -11,7 +11,7 @@ const DEFAULTS = {
 }
 
 const settingsController = {
-  // Публичный — отдаёт текущие настройки. Если записи ещё нет — создаёт со значениями по умолчанию.
+ 
   get: asyncHandler(async (req, res) => {
     let settings = await prisma.settings.findFirst()
     if (!settings) {
@@ -20,7 +20,7 @@ const settingsController = {
     res.json(settings)
   }),
 
-  // Только для админа
+ 
   update: asyncHandler(async (req, res) => {
     const { phone, email, address, expressPrice, standardPrice, premiumPrice } = req.body
 

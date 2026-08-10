@@ -14,7 +14,7 @@ const tokenService = {
   },
 
   getFingerprint(req) {
-    // Создаём хеш от IP + User-Agent
+  
     const data = (req.ip || '') + (req.headers['user-agent'] || '')
     return crypto.createHash('sha256').update(data).digest('hex')
   },

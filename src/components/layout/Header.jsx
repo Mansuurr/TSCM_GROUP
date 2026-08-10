@@ -40,7 +40,6 @@ export default function Header() {
           <img src="/logo.png" alt="TSCM Group" className="h-8 w-auto" />
         </Link>
 
-        {/* Desktop */}
         <nav className="hidden items-center gap-10 md:flex">
           {navLinks.map((link) => (
             <Link
@@ -68,7 +67,6 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
         <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
         </button>

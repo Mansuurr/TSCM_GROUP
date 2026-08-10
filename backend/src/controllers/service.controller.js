@@ -22,7 +22,6 @@ const serviceController = {
     res.json(service)
   }),
 
-  // Admin only
   create: asyncHandler(async (req, res) => {
     const service = await prisma.service.create({ data: req.body })
     res.status(201).json(service)

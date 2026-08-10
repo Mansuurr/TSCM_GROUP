@@ -46,7 +46,7 @@ const CHECKLIST = [
 
 const quizController = {
   getQuestions: asyncHandler(async (req, res) => {
-    // Отдаём вопросы без правильных ответов (risk скрыт)
+    
     const safeQuestions = QUESTIONS.map(({ id, question, options }) => ({
       id,
       question,
@@ -56,7 +56,7 @@ const quizController = {
   }),
 
   submit: asyncHandler(async (req, res) => {
-    const { email, answers } = req.body // answers: { "1": 1, "2": 0, ... } — индекс ответа
+    const { email, answers } = req.body
 
     let score = 0
     for (const q of QUESTIONS) {
@@ -94,7 +94,6 @@ const quizController = {
     })
   }),
 
-  // Admin only
   getResults: asyncHandler(async (req, res) => {
     const results = await prisma.quizResult.findMany({
       orderBy: { createdAt: 'desc' },

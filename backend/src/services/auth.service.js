@@ -88,7 +88,7 @@ const authService = {
       throw err
     }
 
-    // Проверяем fingerprint
+    
     const currentFingerprint = tokenService.getFingerprint(req)
     if (tokenFromDb.fingerprint && tokenFromDb.fingerprint !== currentFingerprint) {
       await tokenService.removeRefreshToken(refreshToken)

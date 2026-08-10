@@ -107,14 +107,12 @@ export default function Home() {
 
   return (
     <div className="relative w-full">
-      {/* Фон */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute inset-0 opacity-50" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)', backgroundSize: '60px 60px' }} />
         <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-white/[0.02] blur-3xl" />
       </div>
 
       <div className="relative z-10 w-full">
-        {/* HERO */}
         <section className="flex w-full flex-col items-center justify-center px-6 pb-32 pt-36 text-center md:pt-44">
           <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp} className="mb-6 text-xs font-medium tracking-[0.3em] text-[#555] uppercase">
             Физическая безопасность
@@ -138,7 +136,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* УТП */}
         <section className="w-full px-6 py-32 md:py-40">
           <div className="mx-auto w-full max-w-[1200px]">
             <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="mb-20 text-center text-xs font-medium tracking-[0.25em] text-[#555] uppercase">
@@ -170,7 +167,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* УСЛУГИ */}
         <section className="w-full px-6 py-32 md:py-40">
           <div className="mx-auto w-full max-w-[1200px]">
             <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-20 text-center text-xs font-medium tracking-[0.25em] text-[#555] uppercase">
@@ -197,7 +193,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ГАЛЕРЕЯ */}
         <section className="w-full px-6 py-32 md:py-40">
           <div className="mx-auto w-full max-w-[1200px]">
             <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-20 text-center text-xs font-medium tracking-[0.25em] text-[#555] uppercase">
@@ -225,7 +220,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* КВИЗ */}
         <section id="quiz" className="w-full px-6 py-32 md:py-40">
           <div className="mx-auto w-full max-w-[600px]">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -296,7 +290,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ФОРМА ЗАЯВКИ */}
         <section className="w-full px-6 py-32 md:py-40">
           <div className="mx-auto w-full max-w-[1200px]">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-3xl border border-[#1a1a1a] bg-[#0c0c0c] p-8 md:p-16">

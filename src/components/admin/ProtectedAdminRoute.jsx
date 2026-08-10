@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import api from '../../services/api'
 
 export default function ProtectedAdminRoute() {
-  const [status, setStatus] = useState('checking') // checking | ok | fail
+  const [status, setStatus] = useState('checking')
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken')

@@ -15,12 +15,12 @@ const settingsRoutes = require('./routes/settings.routes')
 
 const app = express()
 
-// Security headers
+
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
 }))
 
-// Rate limit: 100 запросов за 15 мин
+
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -29,7 +29,7 @@ app.use(rateLimit({
   message: { message: 'Слишком много запросов' },
 }))
 
-// Строгий лимит на логин/регистрацию: 5 попыток за 15 мин
+
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,

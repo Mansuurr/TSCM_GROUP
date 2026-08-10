@@ -18,7 +18,7 @@ export default function AdminDashboard() {
     try {
       await api.post('/auth/logout')
     } catch {
-      // игнорируем — всё равно чистим локально
+    
     }
     localStorage.removeItem('accessToken')
     navigate('/admin/login')
