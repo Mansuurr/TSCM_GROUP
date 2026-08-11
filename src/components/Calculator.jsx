@@ -52,11 +52,14 @@ export default function Calculator() {
     }
   }
 
+  const [formError, setFormError] = useState(null)
+
   const handleFormChange = (field) => (e) => setForm({ ...form, [field]: e.target.value })
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+    setFormError(null)
     try {
       await api.post('/requests', {
         name: form.name,
@@ -68,7 +71,11 @@ export default function Calculator() {
       })
       setSent(true)
     } catch (err) {
-      console.error(err)
+      if (err.response?.status === 429) {
+        setSent(true) // показываем "отправлено" т.к. заявка уже есть
+      } else {
+        setFormError('Не удалось отправить. Позвоните нам напрямую.')
+      }
     } finally {
       setLoading(false)
     }

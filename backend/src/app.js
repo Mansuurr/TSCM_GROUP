@@ -50,6 +50,14 @@ app.use(cookieParser())
 app.use('/api/auth/register', authLimiter)
 app.use('/api/auth/login', authLimiter)
 
+// максимум 5 заявок с одного IP за 10 минут
+const requestLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 5,
+  message: { message: 'Слишком много заявок. Попробуйте через 10 минут.' },
+})
+app.use('/api/requests', requestLimiter)
+
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/requests', requestRoutes)

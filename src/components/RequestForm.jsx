@@ -24,7 +24,11 @@ export default function RequestForm({ source = 'direct', type = 'Общая за
       setSent(true)
       onSuccess?.()
     } catch (err) {
-      setError('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам напрямую.')
+      if (err.response?.status === 429) {
+        setError(err.response.data?.message || 'Заявка уже отправлена. Мы свяжемся с вами в ближайшее время.')
+      } else {
+        setError('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам напрямую.')
+      }
     } finally {
       setLoading(false)
     }
