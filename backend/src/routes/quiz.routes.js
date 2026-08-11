@@ -6,5 +6,6 @@ const { authMiddleware, adminMiddleware } = require('../middleware/auth.middlewa
 router.get('/questions', quizController.getQuestions)
 router.post('/submit', quizController.submit)
 router.get('/results', authMiddleware, adminMiddleware, quizController.getResults)
+router.delete('/results/:id', authMiddleware, adminMiddleware, quizController.deleteResult)
 
 module.exports = router

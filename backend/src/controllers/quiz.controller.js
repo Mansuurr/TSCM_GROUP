@@ -80,6 +80,12 @@ const quizController = {
     const results = await prisma.quizResult.findMany({ orderBy: { createdAt: 'desc' } })
     res.json(results)
   }),
+
+  deleteResult: asyncHandler(async (req, res) => {
+    const { id } = req.params
+    await prisma.quizResult.delete({ where: { id } })
+    res.json({ message: 'Удалено' })
+  }),
 }
 
 module.exports = quizController

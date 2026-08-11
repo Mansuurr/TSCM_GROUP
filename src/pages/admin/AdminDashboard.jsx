@@ -331,6 +331,7 @@ function Field({ label, value, onChange, type = 'text' }) {
 }
 
 function QuizTab() {
+  const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
     queryKey: ['admin-quiz'],
     queryFn: async () => (await api.get('/quiz/results')).data,
@@ -340,6 +341,19 @@ function QuizTab() {
     queryFn: async () => (await api.get('/quiz/questions')).data,
   })
   const [openId, setOpenId] = useState(null)
+  const [deletingId, setDeletingId] = useState(null)
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id) => api.delete(`/quiz/results/${id}`),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['admin-quiz'] }),
+  })
+
+  const handleDelete = (e, id) => {
+    e.stopPropagation()
+    if (!confirm('Удалить результат?')) return
+    setDeletingId(id)
+    deleteMutation.mutate(id, { onSettled: () => setDeletingId(null) })
+  }
 
   if (isLoading) return <p className="text-sm text-[#555]">Загрузка...</p>
   if (!data?.length) return <p className="text-sm text-[#555]">Результатов пока нет</p>
@@ -369,7 +383,16 @@ function QuizTab() {
                 </p>
                 <p className="mt-1 text-sm text-[#888]">{riskLabel(r.riskLevel)} · Балл: {r.score}</p>
               </div>
-              <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+                <button
+                  onClick={(e) => handleDelete(e, r.id)}
+                  disabled={deletingId === r.id}
+                  className="rounded px-2 py-1 text-xs text-[#555] transition-colors hover:bg-red-900/30 hover:text-red-400 disabled:opacity-40"
+                >
+                  {deletingId === r.id ? '...' : '✕'}
+                </button>
+              </div>
             </button>
 
             {isOpen && (
