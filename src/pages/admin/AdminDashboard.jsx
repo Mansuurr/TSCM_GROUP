@@ -58,6 +58,7 @@ export default function AdminDashboard() {
 }
 
 function RequestsTab() {
+  const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
     queryKey: ['admin-requests'],
     queryFn: async () => (await api.get('/requests')).data,
@@ -71,6 +72,19 @@ function RequestsTab() {
     queryFn: async () => (await api.get('/quiz/questions')).data,
   })
   const [openId, setOpenId] = useState(null)
+  const [deletingId, setDeletingId] = useState(null)
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id) => api.delete(`/requests/${id}`),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['admin-requests'] }),
+  })
+
+  const handleDelete = (e, id) => {
+    e.stopPropagation()
+    if (!confirm('Удалить заявку?')) return
+    setDeletingId(id)
+    deleteMutation.mutate(id, { onSettled: () => setDeletingId(null) })
+  }
 
   if (isLoading) return <p className="text-sm text-[#555]">Загрузка...</p>
   if (!data?.length) return <p className="text-sm text-[#555]">Заявок пока нет</p>
@@ -101,7 +115,16 @@ function RequestsTab() {
                   <span className="text-xs text-[#666]">· {r.type}</span>
                 </div>
               </div>
-              <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+                <button
+                  onClick={(e) => handleDelete(e, r.id)}
+                  disabled={deletingId === r.id}
+                  className="rounded px-2 py-1 text-xs text-[#555] transition-colors hover:bg-red-900/30 hover:text-red-400 disabled:opacity-40"
+                >
+                  {deletingId === r.id ? '...' : '✕'}
+                </button>
+              </div>
             </button>
 
             {r.description && <p className="mt-2 text-sm text-[#aaa]">{r.description}</p>}
