@@ -66,12 +66,6 @@ export default function Header() {
               <Phone className="h-3.5 w-3.5" />
               {phone}
             </a>
-            <Link
-              to="/request"
-              className="rounded-full bg-[#14804f] px-5 py-2 text-[13px] font-medium text-white transition-transform hover:scale-105 hover:bg-[#0e5c39]"
-            >
-              Заявка
-            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -99,9 +93,6 @@ export default function Header() {
                 <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-sm text-[#444]">
                   <Phone className="h-4 w-4" /> {phone}
                 </a>
-                <Link to="/request" className="mt-2 rounded-full bg-[#14804f] py-3 text-center text-sm font-medium text-white">
-                  Оставить заявку
-                </Link>
               </div>
             </motion.div>
           )}
