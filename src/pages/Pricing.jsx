@@ -17,34 +17,51 @@ export default function Pricing() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-32">
-      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center text-4xl font-light text-white">
-        Тарифы
-      </motion.h1>
-      <div className="mt-20 grid gap-6 md:grid-cols-3">
-        {plans.map((plan, i) => (
-          <motion.div
-            key={plan.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            onMouseMove={handleCardMouseMove}
-            className={`spotlight-card relative rounded-2xl border p-8 ${plan.popular ? 'border-white/20 bg-[#141414]' : 'border-[#1f1f1f] bg-[#0f0f0f]'}`}
-          >
-            {plan.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1 text-xs font-medium text-black">Популярный</span>}
-            <h3 className="text-lg font-medium text-white">{plan.name}</h3>
-            <p className="mt-2 text-3xl font-light text-white">{settings?.[plan.priceKey] ?? '...'}</p>
-            <p className="text-sm text-[#666]">{plan.period}</p>
-            <ul className="mt-6 space-y-3">
-              {plan.features.map(f => (
-                <li key={f} className="flex items-center gap-2 text-sm text-[#888]">
-                  <span className="h-1 w-1 rounded-full bg-[#555]" />{f}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+    <div className="relative w-full bg-white">
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="bg-grid absolute inset-0" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6 py-32">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+          Тарифы
+        </motion.p>
+        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-display text-center text-4xl text-[#111] md:text-5xl">
+          Стоимость проверки
+        </motion.h1>
+
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              onMouseMove={handleCardMouseMove}
+              className={`spotlight-card relative rounded-2xl border p-8 ${
+                plan.popular ? 'border-[#14804f]/40 bg-[#f7f7f5]' : 'border-[#e3e2de] bg-white'
+              }`}
+            >
+              {plan.popular && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#14804f] px-4 py-1 text-xs font-medium text-white">
+                  Популярный
+                </span>
+              )}
+              <h3 className="text-lg font-medium text-[#111]">{plan.name}</h3>
+              <p className="mt-2 text-3xl font-light text-[#111]">{settings?.[plan.priceKey] ?? '...'}</p>
+              <p className="text-sm text-[#888]">{plan.period}</p>
+              <ul className="mt-6 space-y-3">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-[#5c5c58]">
+                    <span className="h-1 w-1 rounded-full bg-[#14804f]" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -11,7 +11,9 @@ const errorMiddleware = require('./middleware/error.middleware')
 const serviceRoutes = require('./routes/service.routes')
 const pricingRoutes = require('./routes/pricing.routes')
 const quizRoutes = require('./routes/quiz.routes')
+const calculatorRoutes = require('./routes/calculator.routes')
 const settingsRoutes = require('./routes/settings.routes')
+
 
 const app = express()
 
@@ -38,7 +40,7 @@ const authLimiter = rateLimit({
 })
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL || 'http://localhost:5174',
   credentials: true,
 }))
 
@@ -59,6 +61,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/services', serviceRoutes)
 app.use('/api/pricing', pricingRoutes)
 app.use('/api/quiz', quizRoutes)
+app.use('/api/calculator', calculatorRoutes)
 app.use('/api/settings', settingsRoutes)  
 app.use(errorMiddleware)
 

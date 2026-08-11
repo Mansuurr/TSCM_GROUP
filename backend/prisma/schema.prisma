@@ -32,8 +32,11 @@ model Request {
   id          String   @id @default(uuid())
   name        String
   phone       String
+  messenger   String?  @default("phone")
   type        String
   description String?
+  answers     String?
+  source      String   @default("direct")
   status      String   @default("NEW")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -67,6 +70,8 @@ model Pricing {
 
 model QuizResult {
   id          String   @id @default(uuid())
+  name        String?
+  phone       String?
   email       String?
   answers     String
   score       Int
@@ -84,4 +89,11 @@ model Settings {
   standardPrice String   @default("35 000 ₸")
   premiumPrice  String   @default("80 000 ₸")
   updatedAt     DateTime @updatedAt
+}
+
+model CalculatorResult {
+  id         String   @id @default(uuid())
+  answers    String
+  objectType String
+  createdAt  DateTime @default(now())
 }

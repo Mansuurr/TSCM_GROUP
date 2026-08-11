@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Onest:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #050505;
-  --color-surface: #0f0f0f;
-  --color-surface-hover: #161616;
-  --color-border: #1f1f1f;
-  --color-border-hover: #333333;
-  --color-text: #f5f5f5;
-  --color-text-muted: #666666;
-  --color-accent: #ffffff;
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f5;
+  --color-surface-hover: #eeeeec;
+  --color-border: #e3e2de;
+  --color-border-hover: #c9c8c2;
+  --color-text: #111111;
+  --color-text-muted: #5c5c58;
+  --color-accent: #14804f;
+  --color-accent-dark: #0e5c39;
 
   --font-sans: 'Onest', system-ui, sans-serif;
+  --font-display: 'Bebas Neue', 'Onest', system-ui, sans-serif;
 }
 
 @layer base {
@@ -44,20 +46,26 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(20, 128, 79, 0.15);
 }
 
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Анимированная сетка фона (теперь тёмная сетка на светлом фоне) */
 .bg-grid {
   background-size: 60px 60px;
   background-image:
     linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.03) 1px,
+      rgba(0, 0, 0, 0.035) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.03) 1px,
+      rgba(0, 0, 0, 0.035) 1px,
       transparent 1px
     );
 
@@ -74,13 +82,14 @@ body {
   );
 }
 
+/* Glow orb — теперь мягкое зелёное свечение вместо белого */
 .glow-orb {
   position: absolute;
   width: 600px;
   height: 600px;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.04) 0%,
+    rgba(20, 128, 79, 0.06) 0%,
     transparent 70%
   );
   border-radius: 50%;
@@ -104,6 +113,7 @@ body {
   }
 }
 
+/* Спотлайт-эффект на карточках — под светлую тему (зелёное свечение) */
 .spotlight-card {
   position: relative;
   isolation: isolate;
@@ -117,7 +127,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(74, 148, 144, 0.15),
+    rgba(20, 128, 79, 0.10),
     transparent 40%
   );
   opacity: 0;
@@ -137,7 +147,7 @@ body {
   padding: 1px;
   background: radial-gradient(
     350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(74, 148, 144, 0.5),
+    rgba(20, 128, 79, 0.45),
     transparent 40%
   );
   -webkit-mask:

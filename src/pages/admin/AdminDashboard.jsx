@@ -62,50 +62,98 @@ function RequestsTab() {
     queryKey: ['admin-requests'],
     queryFn: async () => (await api.get('/requests')).data,
   })
+  const { data: calcQuestions } = useQuery({
+    queryKey: ['calc-questions-admin'],
+    queryFn: async () => (await api.get('/calculator/questions')).data,
+  })
+  const { data: quizQuestions } = useQuery({
+    queryKey: ['quiz-questions-admin'],
+    queryFn: async () => (await api.get('/quiz/questions')).data,
+  })
+  const [openId, setOpenId] = useState(null)
 
   if (isLoading) return <p className="text-sm text-[#555]">Загрузка...</p>
   if (!data?.length) return <p className="text-sm text-[#555]">Заявок пока нет</p>
 
-  return (
-    <div className="space-y-3">
-      {data.map((r) => (
-        <div key={r.id} className="rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] p-5">
-          <div className="flex items-center justify-between">
-            <p className="font-medium">
-              {r.name} · {r.phone}
-            </p>
-            <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
-          </div>
-          <p className="mt-1 text-sm text-[#888]">{r.type}</p>
-          {r.description && <p className="mt-2 text-sm text-[#aaa]">{r.description}</p>}
-        </div>
-      ))}
-    </div>
-  )
-}
+  const messengerLabel = (m) => (m === 'telegram' ? 'Telegram' : m === 'whatsapp' ? 'WhatsApp' : 'Звонок')
+  const sourceLabel = (s) => (s === 'calculator' ? 'Калькулятор' : s === 'quiz' ? 'Тест' : 'Напрямую')
 
-function QuizTab() {
-  const { data, isLoading } = useQuery({
-    queryKey: ['admin-quiz'],
-    queryFn: async () => (await api.get('/quiz/results')).data,
-  })
-
-  if (isLoading) return <p className="text-sm text-[#555]">Загрузка...</p>
-  if (!data?.length) return <p className="text-sm text-[#555]">Результатов пока нет</p>
+  const parseAnswers = (raw) => {
+    try { return JSON.parse(raw) } catch { return null }
+  }
 
   return (
     <div className="space-y-3">
-      {data.map((r) => (
-        <div key={r.id} className="rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] p-5">
-          <div className="flex items-center justify-between">
-            <p className="font-medium">
-              Балл: {r.score} · {r.riskLevel}
-            </p>
-            <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+      {data.map((r) => {
+        const answers = r.answers ? parseAnswers(r.answers) : null
+        const isOpen = openId === r.id
+
+        return (
+          <div key={r.id} className="rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] p-5">
+            <button onClick={() => setOpenId(isOpen ? null : r.id)} className="flex w-full items-start justify-between text-left">
+              <div>
+                <p className="font-medium">{r.name} · {r.phone}</p>
+                <div className="mt-1 flex items-center gap-3">
+                  <span className="rounded-full bg-[#1a1a1a] px-2.5 py-0.5 text-xs text-[#4a9490]">
+                    {messengerLabel(r.messenger)}
+                  </span>
+                  <span className="text-xs text-[#666]">{sourceLabel(r.source)}</span>
+                  <span className="text-xs text-[#666]">· {r.type}</span>
+                </div>
+              </div>
+              <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+            </button>
+
+            {r.description && <p className="mt-2 text-sm text-[#aaa]">{r.description}</p>}
+
+            {isOpen && r.source === 'quiz' && answers && (
+              <div className="mt-4 space-y-2 border-t border-[#1f1f1f] pt-4">
+                <p className="mb-2 text-xs uppercase tracking-wider text-[#555]">Ответы теста безопасности</p>
+                {quizQuestions ? (
+                  quizQuestions.map((q) => {
+                    const answerIndex = answers[q.id]
+                    const answerText = q.options[answerIndex] || '—'
+                    return (
+                      <div key={q.id} className="text-sm">
+                        <p className="text-[#aaa]">{q.question}</p>
+                        <p className="mt-0.5 font-medium text-white">{answerText}</p>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <p className="text-xs text-[#666]">Загрузка вопросов...</p>
+                )}
+              </div>
+            )}
+
+            {isOpen && r.source === 'calculator' && answers && (
+              <div className="mt-4 space-y-2 border-t border-[#1f1f1f] pt-4">
+                <p className="mb-2 text-xs uppercase tracking-wider text-[#555]">Ответы предварительного аудита</p>
+                {calcQuestions ? (
+                  calcQuestions.map((q) => {
+                    const a = answers[q.id]
+                    const answerText = a?.customText || q.options[a?.optionIndex] || '—'
+                    return (
+                      <div key={q.id} className="text-sm">
+                        <p className="text-[#aaa]">{q.question}</p>
+                        <p className="mt-0.5 font-medium text-white">{answerText}</p>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <p className="text-xs text-[#666]">Загрузка вопросов...</p>
+                )}
+              </div>
+            )}
+
+            {isOpen && !answers && (
+              <div className="mt-4 border-t border-[#1f1f1f] pt-4">
+                <p className="text-xs text-[#666]">Дополнительные ответы отсутствуют</p>
+              </div>
+            )}
           </div>
-          {r.email && <p className="mt-1 text-sm text-[#888]">{r.email}</p>}
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
@@ -255,6 +303,69 @@ function Field({ label, value, onChange, type = 'text' }) {
         onChange={onChange}
         className="w-full rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] px-4 py-2.5 text-sm text-white outline-none transition-colors focus:border-[#444]"
       />
+    </div>
+  )
+}
+
+function QuizTab() {
+  const { data, isLoading } = useQuery({
+    queryKey: ['admin-quiz'],
+    queryFn: async () => (await api.get('/quiz/results')).data,
+  })
+  const { data: questions } = useQuery({
+    queryKey: ['quiz-questions-admin'],
+    queryFn: async () => (await api.get('/quiz/questions')).data,
+  })
+  const [openId, setOpenId] = useState(null)
+
+  if (isLoading) return <p className="text-sm text-[#555]">Загрузка...</p>
+  if (!data?.length) return <p className="text-sm text-[#555]">Результатов пока нет</p>
+
+  const riskLabel = (level) => (level === 'high' ? '🔴 Высокий' : level === 'medium' ? '🟠 Средний' : '🟢 Базовый')
+
+  const parseAnswers = (raw) => {
+    try {
+      return JSON.parse(raw)
+    } catch {
+      return {}
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      {data.map((r) => {
+        const answers = parseAnswers(r.answers)
+        const isOpen = openId === r.id
+
+        return (
+          <div key={r.id} className="rounded-xl border border-[#1f1f1f] bg-[#0f0f0f] p-5">
+            <button onClick={() => setOpenId(isOpen ? null : r.id)} className="flex w-full items-center justify-between text-left">
+              <div>
+                <p className="font-medium">
+                  {r.name || 'Аноним'} {r.phone ? `· ${r.phone}` : ''}
+                </p>
+                <p className="mt-1 text-sm text-[#888]">{riskLabel(r.riskLevel)} · Балл: {r.score}</p>
+              </div>
+              <span className="text-xs text-[#666]">{new Date(r.createdAt).toLocaleString('ru-RU')}</span>
+            </button>
+
+            {isOpen && (
+              <div className="mt-4 space-y-2 border-t border-[#1f1f1f] pt-4">
+                {questions?.map((q) => {
+                  const answerIndex = answers[q.id]
+                  const answerText = answerIndex !== undefined ? q.options[answerIndex] : '—'
+                  return (
+                    <div key={q.id} className="text-sm">
+                      <p className="text-[#aaa]">{q.question}</p>
+                      <p className={`mt-0.5 font-medium ${answerText === 'Да' ? 'text-red-400' : 'text-[#4a9490]'}`}>{answerText}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }
