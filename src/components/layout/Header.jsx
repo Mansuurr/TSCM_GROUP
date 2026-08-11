@@ -41,7 +41,7 @@ export default function Header() {
           scrolled ? 'border-b border-[#e3e2de] bg-white/90 backdrop-blur-xl' : 'border-b border-transparent bg-white'
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4">
           <Link to="/" className="flex items-center gap-2.5">
             <img src="/logo.png" alt="TSCM Group" className="h-9 w-auto" />
           </Link>
@@ -61,7 +61,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center justify-end gap-6 md:flex">
             <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-[13px] text-[#444] transition-colors hover:text-[#14804f]">
               <Phone className="h-3.5 w-3.5" />
               {phone}
@@ -75,9 +75,11 @@ export default function Header() {
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <X className="h-5 w-5 text-[#111]" /> : <Menu className="h-5 w-5 text-[#111]" />}
-          </button>
+          <div className="flex justify-end md:hidden">
+            <button onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X className="h-5 w-5 text-[#111]" /> : <Menu className="h-5 w-5 text-[#111]" />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>

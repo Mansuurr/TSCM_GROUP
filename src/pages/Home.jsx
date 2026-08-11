@@ -178,9 +178,9 @@ export default function Home() {
           </motion.p>
 
           <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link to="/request" className="rounded-full bg-[#14804f] px-8 py-3.5 text-sm font-medium text-white transition-transform hover:scale-105 hover:bg-[#0e5c39]">
+            <a href="#calculator" className="rounded-full bg-[#14804f] px-8 py-3.5 text-sm font-medium text-white transition-transform hover:scale-105 hover:bg-[#0e5c39]">
               Оставить заявку
-            </Link>
+            </a>
             <a href="#quiz" className="flex items-center justify-center gap-2 rounded-full border border-[#d9d8d3] px-8 py-3.5 text-sm text-[#111] transition-all hover:border-[#14804f] hover:text-[#14804f]">
               Пройти тест <ArrowRight className="h-4 w-4" />
             </a>
@@ -537,9 +537,9 @@ export default function Home() {
       <div className="mx-auto w-full max-w-[500px]">
         <h2 className="text-center text-2xl font-light text-[#111] md:text-3xl">Заказать конфиденциальную проверку</h2>
         <p className="mt-4 text-center text-sm text-[#5c5c58]">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
-        <Link to="/request" className="mt-10 inline-block rounded-full bg-[#14804f] px-10 py-4 text-sm font-medium text-white transition-transform hover:scale-[1.02] hover:bg-[#0e5c39]">
+        <a href="#calculator" className="mt-10 inline-block rounded-full bg-[#14804f] px-10 py-4 text-sm font-medium text-white transition-transform hover:scale-[1.02] hover:bg-[#0e5c39]">
           Оставить заявку
-        </Link>
+        </a>
         <p className="mt-6 text-center text-[11px] text-[#aaa]">Все обращения строго конфиденциальны. Данные не передаются третьим лицам.</p>
       </div>
     </motion.div>
