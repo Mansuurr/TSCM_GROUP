@@ -156,7 +156,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-[#050807] text-white">
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="bg-grid absolute inset-0" />
         <div className="glow-orb" />
@@ -164,75 +164,134 @@ export default function Home() {
 
       <div className="relative z-10 w-full">
         {/* HERO */}
-        <section className="flex w-full flex-col items-center justify-center px-6 pb-28 pt-20 text-center md:pt-28">
-          <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp} className="mb-6 text-xs font-medium tracking-[0.3em] text-[#5c5c58] uppercase">
-            Физическая безопасность
-          </motion.p>
+        <section className="relative overflow-hidden bg-[#050807] px-6 pb-16 pt-8 md:pt-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(33,255,177,0.18),_transparent_38%)]" />
+          <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#54e0ad]/25 blur-[120px]" />
 
-          <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[820px] text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.05] tracking-tight text-[#111]">
-            Профессиональный поиск жучков и защита от слежки
-          </motion.h1>
+          <div className="relative mx-auto max-w-[1200px]">
+            <div className="mx-auto flex max-w-[980px] flex-col items-start gap-10 lg:gap-14">
+              <div className="w-full">
+                <motion.div custom={0} initial="hidden" animate="visible" variants={fadeUp} className="mb-6 flex items-center gap-3">
+                  <span className="saq-brand-mark">SAQ</span>
+                  <p className="text-xs font-medium tracking-[0.3em] text-[#a8d8c7] uppercase">
+                    Физическая безопасность
+                  </p>
+                </motion.div>
 
-          <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="mt-8 max-w-[520px] text-base leading-relaxed text-[#5c5c58]">
-            Проверка помещений, автомобилей и офисов сертифицированным оборудованием. Гарантируем конфиденциальность и выявление любых каналов утечки информации.
-          </motion.p>
+                <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[980px] text-[clamp(3rem,6vw,7rem)] leading-[0.9] tracking-[-0.06em] text-white">
+                  Профессиональный поиск жучков и защита от слежки
+                </motion.h1>
 
-          <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a href="#calculator" className="rounded-full bg-[#14804f] px-8 py-3.5 text-sm font-medium text-white transition-transform hover:scale-105 hover:bg-[#0e5c39]">
-              Оставить заявку
-            </a>
-            <a href="#quiz" className="flex items-center justify-center gap-2 rounded-full border border-[#d9d8d3] px-8 py-3.5 text-sm text-[#111] transition-all hover:border-[#14804f] hover:text-[#14804f]">
-              Пройти тест <ArrowRight className="h-4 w-4" />
-            </a>
-          </motion.div>
-        </section>
+                <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="mt-8 max-w-[620px] text-base leading-relaxed text-white/75 md:text-lg">
+                  Проверка помещений, автомобилей и офисов сертифицированным оборудованием. Гарантируем конфиденциальность и выявление любых каналов утечки информации.
+                </motion.p>
 
-        {/* О НАС */}
-        <section className="w-full px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[900px] text-center">
-            <p className="mb-6 text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">О нас</p>
-            <p className="text-lg leading-relaxed text-[#333] md:text-xl">
-              Мы — специализированная команда инженеров, радиотехников и специалистов по кибербезопасности. Наша миссия — исключить любые формы промышленного шпионажа, несанкционированного съёма информации и цифровых атак на ваш бизнес и личную жизнь.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-[#5c5c58]">
-              В отличие от компаний, использующих бытовые детекторы поля, мы подходим к защите информации как к сложному физико-техническому процессу. В нашем распоряжении — программно-аппаратные комплексы экспертного уровня, нелинейные локаторы последней серии, анализаторы спектра и оптические системы обнаружения. Мы не просто находим шпионские устройства — мы выявляем и перекрываем каналы утечки данных ещё до того, как они нанесут ущерб.
-            </p>
-            <p className="mt-8 text-sm font-medium uppercase tracking-wider text-[#14804f]">Работаем по всему Казахстану</p>
+                <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
+                  <a href="#calculator" className="rounded-full bg-[#79f2bf] px-8 py-3.5 text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf]">
+                    Оставить заявку
+                  </a>
+                  <a href="#quiz" className="flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/3 px-8 py-3.5 text-sm text-white transition-all hover:border-[#79f2bf] hover:text-[#79f2bf]">
+                    Пройти тест <ArrowRight className="h-4 w-4" />
+                  </a>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="hero-visual w-full"
+              >
+                <div className="hero-panel">
+                  <div className="hero-panel-top">
+                    <div className="hero-status">
+                      <span className="hero-dot" />
+                      live scan
+                    </div>
+                    <span className="hero-badge">TSCM</span>
+                  </div>
+
+                  <div className="hero-scan-grid">
+                    <div className="hero-scan-line" />
+                    <div className="hero-scan-line delay-1" />
+                    <div className="hero-scan-line delay-2" />
+                  </div>
+
+                  <div className="hero-metrics">
+                    <div className="hero-metric-card">
+                      <span className="hero-mini-label">signal</span>
+                      <strong>98.4%</strong>
+                    </div>
+                    <div className="hero-metric-card accent">
+                      <span className="hero-mini-label">anomaly</span>
+                      <strong>02</strong>
+                    </div>
+                  </div>
+
+                  <div className="hero-tags">
+                    <span>GPS</span>
+                    <span>Mic</span>
+                    <span>RF</span>
+                    <span>Camera</span>
+                  </div>
+                </div>
+
+                <div className="hero-floating-stack">
+                  <motion.div
+                    animate={{ y: [0, -8, 0], rotate: [0, 1.5, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                    className="hero-float-card hero-float-card-top"
+                  >
+                    <span className="mini-title">Shield audit</span>
+                    <strong>24/7</strong>
+                  </motion.div>
+
+                  <motion.div
+                    animate={{ y: [0, 8, 0], rotate: [0, -1.5, 0] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                    className="hero-float-card hero-float-card-bottom"
+                  >
+                    <span className="mini-title">object</span>
+                    <strong>ASTANA</strong>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* ПОЧЕМУ НАМ ДОВЕРЯЮТ — 8 факторов, аккордеон */}
-        <section className="w-full bg-[#f7f7f5] px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[900px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+        {/* О НАС */}
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
+          <div className="mx-auto w-full max-w-[900px] text-center">
+            <p className="mb-6 text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">О нас</p>
+            <p className="text-lg leading-relaxed text-white md:text-xl">
+              Мы — специализированная команда инженеров, радиотехников и специалистов по кибербезопасности. Наша миссия — исключить любые формы промышленного шпионажа, несанкционированного съёма информации и цифровых атак на ваш бизнес и личную жизнь.
+            </p>
+            <p className="mt-6 text-base leading-relaxed text-white/75">
+              В отличие от компаний, использующих бытовые детекторы поля, мы подходим к защите информации как к сложному физико-техническому процессу. В нашем распоряжении — программно-аппаратные комплексы экспертного уровня, нелинейные локаторы последней серии, анализаторы спектра и оптические системы обнаружения. Мы не просто находим шпионские устройства — мы выявляем и перекрываем каналы утечки данных ещё до того, как они нанесут ущерб.
+            </p>
+            <p className="mt-8 text-sm font-medium uppercase tracking-wider text-[#79f2bf]">Работаем по всему Казахстану</p>
+          </div>
+        </section>
+
+        {/* ПОЧЕМУ НАМ ДОВЕРЯЮТ — компактные карточки */}
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
+          <div className="mx-auto w-full max-w-[1000px]">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">
               Почему нам доверяют
             </motion.h2>
-            <p className="mb-14 text-center font-display text-2xl text-[#111] md:text-3xl">8 ключевых факторов</p>
+            <p className="mb-10 text-center font-display text-2xl text-white md:text-3xl">8 ключевых факторов</p>
 
-            <div className="space-y-3">
+            <div className="grid gap-4 md:grid-cols-2">
               {trustFactors.map((f, i) => (
-                <div key={i} className="overflow-hidden rounded-2xl border border-[#e3e2de] bg-white">
-                  <button
-                    onClick={() => setOpenFactor(openFactor === i ? null : i)}
-                    className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left"
-                  >
-                    <div>
-                      <span className="text-xs font-medium text-[#14804f]">0{i + 1}</span>
-                      <h3 className="mt-1 text-base font-medium text-[#111]">{f.title}</h3>
-                      {openFactor !== i && <p className="mt-1 text-sm text-[#888]">{f.subtitle}</p>}
-                    </div>
-                    <ChevronDown className={`mt-1 h-5 w-5 flex-shrink-0 text-[#888] transition-transform ${openFactor === i ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {openFactor === i && (
-                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
-                        <div className="px-6 pb-6">
-                          <p className="mb-3 text-sm font-medium text-[#5c5c58]">{f.subtitle}</p>
-                          <p className="text-sm leading-relaxed text-[#5c5c58]">{f.text}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                <div key={i} className="rounded-xl border border-white/10 bg-[#0c1110] p-4 shadow-sm transition-all duration-200 hover:border-[#79f2bf]/50 hover:shadow-[0_0_0_1px_rgba(121,242,191,0.15)]">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#79f2bf]/10 text-[11px] font-semibold text-[#79f2bf]">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-medium leading-snug text-white">{f.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-white/70">{f.subtitle}</p>
                 </div>
               ))}
             </div>
@@ -240,9 +299,9 @@ export default function Home() {
         </section>
 
         {/* УСЛУГИ */}
-        <section className="w-full px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[1200px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-20 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-20 text-center text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">
               Услуги
             </motion.h2>
 
@@ -254,11 +313,15 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group rounded-2xl border border-[#e3e2de] bg-white p-8 transition-all duration-500 hover:border-[#14804f]/40"
+                  className="spotlight-card service-card group rounded-2xl border border-white/10 bg-[#0c1110] p-8 transition-all duration-500 hover:border-[#79f2bf]/50"
                 >
-                  <h3 className="mb-2 text-lg font-medium text-[#111]">{s.title}</h3>
-                  <p className="mb-4 text-sm leading-relaxed text-[#5c5c58]">{s.desc}</p>
-                  <Link to={`/services/${s.slug}`} className="text-sm font-medium text-[#14804f] hover:underline">
+                  <div className="service-card-header">
+                    <span className="service-card-tag">SAQ</span>
+                    <span className="service-card-index">0{i + 1}</span>
+                  </div>
+                  <h3 className="mb-2 text-lg font-medium text-white">{s.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-white/70">{s.desc}</p>
+                  <Link to={`/services/${s.slug}`} className="text-sm font-medium text-[#79f2bf] hover:underline">
                     Подробнее →
                   </Link>
                 </motion.div>
@@ -266,10 +329,10 @@ export default function Home() {
             </div>
 
             <div className="mt-16 text-center">
-              <p className="mb-6 text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">Что проверяем</p>
+              <p className="mb-6 text-xs font-medium tracking-[0.25em] text-white/70 uppercase">Что проверяем</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {checkTags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-[#e3e2de] bg-[#f7f7f5] px-4 py-2 text-sm text-[#333]">
+                  <span key={tag} className="rounded-full border border-white/10 bg-[#0d1110] px-4 py-2 text-sm text-white">
                     {tag}
                   </span>
                 ))}
@@ -277,10 +340,10 @@ export default function Home() {
             </div>
 
             <div className="mt-12 text-center">
-              <p className="mb-6 text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">Что выявляем</p>
+              <p className="mb-6 text-xs font-medium tracking-[0.25em] text-white/70 uppercase">Что выявляем</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {detectList.map((tag) => (
-                  <span key={tag} className="rounded-full bg-[#14804f]/10 px-4 py-2 text-sm font-medium text-[#0e5c39]">
+                  <span key={tag} className="rounded-full bg-[#79f2bf]/10 px-4 py-2 text-sm font-medium text-white">
                     {tag}
                   </span>
                 ))}
@@ -290,17 +353,35 @@ export default function Home() {
         </section>
 
         {/* КАК ПРОХОДИТ РАБОТА */}
-        <section className="w-full bg-[#f7f7f5] px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[1000px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
+          <div className="mx-auto w-full max-w-[1200px]">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.35em] text-white/70 uppercase">
               Как проходит работа
             </motion.h2>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+            <div className="grid gap-10 lg:grid-cols-4">
               {processSteps.map((step, i) => (
-                <motion.div key={step.n} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
-                  <span className="font-display text-4xl text-[#14804f]">{step.n}</span>
-                  <h3 className="mt-3 mb-2 text-base font-medium text-[#111]">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-[#5c5c58]">{step.text}</p>
+                <motion.div
+                  key={step.n}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="group flex flex-col gap-5"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-display text-[clamp(2.4rem,4vw,4rem)] leading-none tracking-[-0.06em] text-[#14804f]">
+                      {step.n}
+                    </span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="max-w-[220px] text-[clamp(1.2rem,2vw,2rem)] leading-tight tracking-[-0.04em] text-white">
+                      {step.title}
+                    </h3>
+                    <p className="max-w-[240px] text-[0.95rem] leading-relaxed text-white/70">
+                      {step.text}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -308,9 +389,9 @@ export default function Home() {
         </section>
 
         {/* СТАТИСТИКА */}
-        <section className="w-full px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[1200px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">
               Мы накопили серьёзный опыт
             </motion.h2>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
@@ -321,11 +402,11 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card rounded-2xl border border-[#e3e2de] bg-white p-6"
+                  className="spotlight-card rounded-2xl border border-white/10 bg-[#0d1110] p-6"
                 >
-                  <p className="font-display text-3xl text-[#14804f]">{s.value}</p>
-                  <p className="mt-2 text-sm font-medium text-[#111]">{s.label}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-[#888]">{s.text}</p>
+                  <p className="font-display text-3xl text-[#79f2bf]">{s.value}</p>
+                  <p className="mt-2 text-sm font-medium text-white">{s.label}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-white/65">{s.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -333,105 +414,114 @@ export default function Home() {
         </section>
 
         {/* СТАНДАРТЫ */}
-        <section className="w-full bg-[#0e5c39] px-6 py-14">
-          <div className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {standards.map((s) => (
-              <div key={s.text} className="flex items-center gap-2 text-sm text-white/90">
-                <s.icon className="h-4 w-4 text-white/70" />
-                {s.text}
-              </div>
-            ))}
+        <section className="w-full bg-[#0e5c39] px-6 py-20">
+          <div className="mx-auto w-full max-w-[1300px]">
+            <div className="grid gap-x-10 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
+              {standards.map((s) => (
+                <div
+                  key={s.text}
+                  className="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/4 px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/8">
+                    <s.icon className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="text-[1.08rem] font-medium leading-snug text-white/95">
+                    {s.text}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ОБОРУДОВАНИЕ */}
-        <section className="w-full px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[1200px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-12 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-12 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">
               Работаем с современным оборудованием
             </motion.h2>
-            <p className="mb-16 text-center text-[#5c5c58] md:text-lg">
+            <p className="mb-16 text-center text-white/70 md:text-lg">
               Наша техническая оснащённость позволяет выявлять любые виды закладок, маяков и каналов утечки информации — от аналоговых устройств до цифровых инструментов.
             </p>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Нелинейные локаторы</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Обнаружение любых полупроводников независимо от состояния питания</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Нелинейные локаторы</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Обнаружение любых полупроводников независимо от состояния питания</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Анализаторы спектра</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Мониторинг диапазона 0–24 ГГц для выявления радиопередатчиков</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Анализаторы спектра</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Мониторинг диапазона 0–24 ГГц для выявления радиопередатчиков</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Оптические системы</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Обнаружение скрытых видеокамер и оптических каналов съёма</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Оптические системы</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Обнаружение скрытых видеокамер и оптических каналов съёма</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Тепловизоры</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Поиск активных устройств по тепловому излучению</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Тепловизоры</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Поиск активных устройств по тепловому излучению</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Виброакустические датчики</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Оценка защиты от лазерных микрофонов и съёма по трубам</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Виброакустические датчики</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Оценка защиты от лазерных микрофонов и съёма по трубам</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center"
+                className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
-                <p className="text-sm font-medium text-[#14804f]">Сканеры CAN-шины</p>
-                <p className="mt-3 text-xs leading-relaxed text-[#5c5c58]">Диагностика электроники автомобилей на предмет закладок</p>
+                <p className="text-sm font-medium text-[#79f2bf]">Сканеры CAN-шины</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/70">Диагностика электроники автомобилей на предмет закладок</p>
               </motion.div>
             </div>
           </div>
         </section>
 
         {/* СЕРТИФИКАТЫ И ЛИЦЕНЗИИ */}
-        <section className="w-full bg-[#f7f7f5] px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[1200px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">
               Сертификаты и лицензии
             </motion.h2>
-            <p className="mb-16 text-center text-sm text-[#5c5c58]">Наша деятельность соответствует требованиям законодательства Республики Казахстан в области технической защиты информации.</p>
+            <p className="mb-16 text-center text-sm text-white/70">Наша деятельность соответствует требованиям законодательства Республики Казахстан в области технической защиты информации.</p>
             <div className="flex flex-col items-center justify-center gap-8">
-              <div className="rounded-2xl border border-[#e3e2de] bg-white p-8 text-center">
-                <p className="text-sm font-medium text-[#111]">Лицензия на проведение TSCM-аудитов</p>
-                <p className="mt-2 text-xs text-[#888]">В процессе получения</p>
+              <div className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center">
+                <p className="text-sm font-medium text-white">Лицензия на проведение TSCM-аудитов</p>
+                <p className="mt-2 text-xs text-white/55">В процессе получения</p>
               </div>
-              <p className="text-xs text-[#666]">Дополнительные сертификаты будут добавлены после получения документов от органов сертификации</p>
+              <p className="text-xs text-white/55">Дополнительные сертификаты будут добавлены после получения документов от органов сертификации</p>
             </div>
           </div>
         </section>
 
         {/* ГАЛЕРЕЯ */}
-        <section className="w-full px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[1200px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">
               Галерея
             </motion.h2>
 
@@ -443,11 +533,11 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card overflow-hidden rounded-2xl border border-[#e3e2de] bg-white"
+                  className="spotlight-card overflow-hidden rounded-2xl border border-white/10 bg-[#0d1110]"
                 >
                   <img src={item.image} alt={item.label} loading="lazy" className="aspect-[16/10] w-full object-cover" />
                   <div className="p-6">
-                    <p className="text-sm text-[#5c5c58]">{item.label}</p>
+                    <p className="text-sm text-white/70">{item.label}</p>
                   </div>
                 </motion.div>
               ))}
@@ -456,71 +546,71 @@ export default function Home() {
         </section>
 
         {/* КАЛЬКУЛЯТОР */}
-        <section id="calculator" className="w-full bg-[#f7f7f5] px-6 py-24 md:py-28">
+        <section id="calculator" className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[600px]">
-            <h2 className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">Предварительный аудит</h2>
-            <p className="mb-12 text-center text-[#5c5c58]">Ответьте на 5 вопросов, чтобы мы сформировали состав поисковой группы под вашу задачу</p>
+            <h2 className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#79f2bf] uppercase">Предварительный аудит</h2>
+            <p className="mb-12 text-center text-white/70">Ответьте на 5 вопросов, чтобы мы сформировали состав поисковой группы под вашу задачу</p>
             <Calculator />
           </div>
         </section>
 
         {/* КВИЗ */}
-        <section id="quiz" className="w-full px-6 py-24 md:py-28">
+        <section id="quiz" className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[600px]">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-              <h2 className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">Экспресс-аудит безопасности</h2>
-              <p className="mb-2 text-center text-lg font-medium text-[#111]">Есть ли за вами или вашим офисом наблюдение?</p>
-              <p className="mb-12 text-center text-[#5c5c58]">Ответьте "Да" или "Нет" на 10 контрольных вопросов, чтобы оценить риск утечки информации и наличие скрытых закладок.</p>
+              <h2 className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">Экспресс-аудит безопасности</h2>
+              <p className="mb-2 text-center text-lg font-medium text-white">Есть ли за вами или вашим офисом наблюдение?</p>
+              <p className="mb-12 text-center text-white/70">Ответьте "Да" или "Нет" на 10 контрольных вопросов, чтобы оценить риск утечки информации и наличие скрытых закладок.</p>
 
-              <div className="rounded-3xl border border-[#e3e2de] bg-white p-8 md:p-10">
+              <div className="rounded-3xl border border-white/10 bg-[#0d1110] p-8 md:p-10">
                 {quizQuestions.length === 0 ? (
-                  <p className="text-center text-sm text-[#888]">Загрузка...</p>
+                  <p className="text-center text-sm text-white/60">Загрузка...</p>
                 ) : !quizDone ? (
                   <AnimatePresence mode="wait">
                     <motion.div key={quizStep} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
                       <div className="mb-8 flex items-center justify-between">
-                        <span className="text-xs text-[#888]">Вопрос {quizStep + 1} из {quizQuestions.length}</span>
+                        <span className="text-xs text-white/60">Вопрос {quizStep + 1} из {quizQuestions.length}</span>
                         <div className="flex gap-1">
                           {quizQuestions.map((_, i) => (
-                            <div key={i} className={`h-1 w-4 rounded-full ${i <= quizStep ? 'bg-[#14804f]' : 'bg-[#e3e2de]'}`} />
+                            <div key={i} className={`h-1 w-4 rounded-full ${i <= quizStep ? 'bg-[#79f2bf]' : 'bg-white/10'}`} />
                           ))}
                         </div>
                       </div>
-                      <h3 className="mb-8 text-lg font-medium leading-relaxed text-[#111]">{quizQuestions[quizStep].question}</h3>
+                      <h3 className="mb-8 text-lg font-medium leading-relaxed text-white">{quizQuestions[quizStep].question}</h3>
                       <div className="space-y-3">
                         {quizQuestions[quizStep].options.map((opt, i) => (
                           <button
                             key={i}
                             disabled={quizLoading}
                             onClick={() => handleQuizAnswer(i)}
-                            className="flex w-full items-center justify-between rounded-xl border border-[#e3e2de] bg-[#f7f7f5] px-6 py-4 text-left text-sm text-[#333] transition-all hover:border-[#14804f] hover:bg-[#14804f]/5 disabled:opacity-40"
+                            className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-[#101514] px-6 py-4 text-left text-sm text-white transition-all hover:border-[#79f2bf] hover:bg-[#79f2bf]/5 disabled:opacity-40"
                           >
                             {opt}
-                            <ChevronRight className="h-4 w-4 text-[#888]" />
+                            <ChevronRight className="h-4 w-4 text-white/60" />
                           </button>
                         ))}
                       </div>
-                      {quizLoading && <p className="mt-6 text-center text-xs text-[#888]">Считаем результат...</p>}
-                      {quizError && <p className="mt-6 text-center text-xs text-red-500">{quizError}</p>}
+                      {quizLoading && <p className="mt-6 text-center text-xs text-white/60">Считаем результат...</p>}
+                      {quizError && <p className="mt-6 text-center text-xs text-red-400">{quizError}</p>}
                     </motion.div>
                   </AnimatePresence>
                 ) : (
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
-                    <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${quizResult.riskLevel === 'high' ? 'bg-red-50 text-red-500' : quizResult.riskLevel === 'medium' ? 'bg-yellow-50 text-yellow-600' : 'bg-green-50 text-[#14804f]'}`}>
+                    <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${quizResult.riskLevel === 'high' ? 'bg-red-500/15 text-red-300' : quizResult.riskLevel === 'medium' ? 'bg-yellow-500/15 text-yellow-300' : 'bg-[#79f2bf]/15 text-[#79f2bf]'}`}>
                       <Check className="h-6 w-6" />
                     </div>
-                    <h3 className="mb-3 text-xl font-medium text-[#111]">
+                    <h3 className="mb-3 text-xl font-medium text-white">
                       {quizResult.riskLevel === 'high' ? '🔴' : quizResult.riskLevel === 'medium' ? '🟠' : '🟢'} {quizResult.title}
                     </h3>
-                    <p className="mb-6 text-sm leading-relaxed text-[#5c5c58]">{quizResult.text}</p>
+                    <p className="mb-6 text-sm leading-relaxed text-white/70">{quizResult.text}</p>
 
                     {quizResult.warning && (
-                      <p className="mb-8 rounded-xl bg-red-50 px-5 py-3 text-xs font-medium text-red-600">{quizResult.warning}</p>
+                      <p className="mb-8 rounded-xl bg-red-500/10 px-5 py-3 text-xs font-medium text-red-300">{quizResult.warning}</p>
                     )}
 
                     <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                      <Link to="/request" className="rounded-full bg-[#14804f] px-6 py-3 text-sm font-medium text-white">{quizResult.cta}</Link>
-                      <button onClick={resetQuiz} className="rounded-full border border-[#e3e2de] px-6 py-3 text-sm text-[#333] hover:border-[#14804f]">Пройти заново</button>
+                      <Link to="/request" className="rounded-full bg-[#79f2bf] px-6 py-3 text-sm font-medium text-[#07110d]">{quizResult.cta}</Link>
+                      <button onClick={resetQuiz} className="rounded-full border border-white/10 px-6 py-3 text-sm text-white hover:border-[#79f2bf]">Пройти заново</button>
                     </div>
                   </motion.div>
                 )}
@@ -530,42 +620,41 @@ export default function Home() {
         </section>
 
         {/* ФОРМА ЗАЯВКИ */}
-        {/* ФОРМА ЗАЯВКИ */}
-<section className="w-full px-6 py-24 md:py-28">
-  <div className="mx-auto w-full max-w-[1200px]">
-    <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center md:p-16">
-      <div className="mx-auto w-full max-w-[500px]">
-        <h2 className="text-center text-2xl font-light text-[#111] md:text-3xl">Заказать конфиденциальную проверку</h2>
-        <p className="mt-4 text-center text-sm text-[#5c5c58]">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
-        <a href="#calculator" className="mt-10 inline-block rounded-full bg-[#14804f] px-10 py-4 text-sm font-medium text-white transition-transform hover:scale-[1.02] hover:bg-[#0e5c39]">
-          Оставить заявку
-        </a>
-        <p className="mt-6 text-center text-[11px] text-[#aaa]">Все обращения строго конфиденциальны. Данные не передаются третьим лицам.</p>
-      </div>
-    </motion.div>
-  </div>
-</section>
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
+          <div className="mx-auto w-full max-w-[1200px]">
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-[#0d1110] p-8 text-center md:p-16">
+              <div className="mx-auto w-full max-w-[500px]">
+                <h2 className="text-center text-2xl font-light text-white md:text-3xl">Заказать конфиденциальную проверку</h2>
+                <p className="mt-4 text-center text-sm text-white/70">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
+                <a href="#calculator" className="mt-10 inline-block rounded-full bg-[#79f2bf] px-10 py-4 text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf]">
+                  Оставить заявку
+                </a>
+                <p className="mt-6 text-center text-[11px] text-white/50">Все обращения строго конфиденциальны. Данные не передаются третьим лицам.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* FAQ */}
-        <section className="w-full px-6 py-24 md:py-28">
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[800px]">
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-[#5c5c58] uppercase">
+            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-16 text-center text-xs font-medium tracking-[0.25em] text-white/70 uppercase">
               Частые вопросы
             </motion.h2>
             <div className="space-y-3">
               {faqItems.map((item, i) => (
-                <div key={i} className="overflow-hidden rounded-2xl border border-[#e3e2de]">
+                <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-[#0d1110]">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                   >
-                    <span className="text-sm font-medium text-[#111]">{item.q}</span>
-                    <ChevronDown className={`h-4 w-4 flex-shrink-0 text-[#888] transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                    <span className="text-sm font-medium text-white">{item.q}</span>
+                    <ChevronDown className={`h-4 w-4 flex-shrink-0 text-white/60 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>
                     {openFaq === i && (
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
-                        <p className="px-6 pb-5 text-sm leading-relaxed text-[#5c5c58]">{item.a}</p>
+                        <p className="px-6 pb-5 text-sm leading-relaxed text-white/70">{item.a}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

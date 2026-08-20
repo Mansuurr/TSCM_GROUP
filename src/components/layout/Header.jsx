@@ -7,7 +7,6 @@ import { useSettings } from '../../hooks/useSettings'
 const navLinks = [
   { to: '/', label: 'Главная' },
   { to: '/services', label: 'Услуги' },
-  { to: '/pricing', label: 'Тарифы' },
   { to: '/gallery', label: 'Галерея' },
   { to: '/contacts', label: 'Контакты' },
 ]
@@ -32,18 +31,18 @@ export default function Header() {
   return (
     <>
       {/* Тонкая полоса-анонс сверху */}
-      <div className="w-full bg-[#14804f] py-1.5 text-center text-[11px] font-medium tracking-wide text-white">
+      <div className="w-full bg-[#1a1a1a] py-1 text-center text-[10px] font-medium tracking-wide text-white">
         Работаем по всему Казахстану
       </div>
 
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled ? 'border-b border-[#e3e2de] bg-white/90 backdrop-blur-xl' : 'border-b border-transparent bg-white'
+          scrolled ? 'border-b border-white/10 bg-[#0b0b0b]/90 backdrop-blur-xl' : 'border-b border-transparent bg-[#0b0b0b]'
         }`}
       >
-        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4">
-          <Link to="/" className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="TSCM Group" className="h-9 w-auto" />
+        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-2.5 md:py-3">
+          <Link to="/" className="flex items-center gap-2.5 justify-self-start">
+            <img src="/logo_final.PNG" alt="TSCM Group" className="h-14 w-auto md:h-16" />
           </Link>
 
           {/* Desktop */}
@@ -53,7 +52,7 @@ export default function Header() {
                 key={link.to}
                 to={link.to}
                 className={`text-[13px] font-medium tracking-wide transition-colors ${
-                  location.pathname === link.to ? 'text-[#14804f]' : 'text-[#444] hover:text-[#14804f]'
+                  location.pathname === link.to ? 'text-[#1d9a64]' : 'text-white/80 hover:text-white'
                 }`}
               >
                 {link.label}
@@ -62,7 +61,7 @@ export default function Header() {
           </nav>
 
           <div className="hidden items-center justify-end gap-6 md:flex">
-            <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-[13px] text-[#444] transition-colors hover:text-[#14804f]">
+            <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-[13px] text-white/80 transition-colors hover:text-white">
               <Phone className="h-3.5 w-3.5" />
               {phone}
             </a>
@@ -71,7 +70,7 @@ export default function Header() {
           {/* Mobile toggle */}
           <div className="flex justify-end md:hidden">
             <button onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <X className="h-5 w-5 text-[#111]" /> : <Menu className="h-5 w-5 text-[#111]" />}
+              {mobileOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
             </button>
           </div>
         </div>
@@ -82,15 +81,15 @@ export default function Header() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="border-b border-[#e3e2de] bg-white md:hidden"
+              className="border-b border-white/10 bg-[#0b0b0b] md:hidden"
             >
               <div className="flex flex-col gap-6 px-6 py-8">
                 {navLinks.map((link) => (
-                  <Link key={link.to} to={link.to} className="text-lg text-[#333] transition-colors hover:text-[#14804f]">
+                  <Link key={link.to} to={link.to} className="text-lg text-white/80 transition-colors hover:text-white">
                     {link.label}
                   </Link>
                 ))}
-                <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-sm text-[#444]">
+                <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 text-sm text-white/80">
                   <Phone className="h-4 w-4" /> {phone}
                 </a>
               </div>

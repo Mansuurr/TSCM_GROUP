@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { services } from '../data/services-data'
 
 const container = { maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '0 24px' }
-const card = { backgroundColor: '#ffffff', border: '1px solid #e3e2de', borderRadius: '16px', padding: '32px' }
+const card = { backgroundColor: '#0d1110', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '32px' }
 const grid = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }
 
 export default function Services() {
@@ -13,11 +13,11 @@ export default function Services() {
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', backgroundColor: '#ffffff', color: '#111111' }}>
-      <div className="bg-grid" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+    <div style={{ position: 'relative', width: '100%', backgroundColor: '#050807', color: '#f5f5f5' }}>
+      <div className="bg-grid" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.5 }} />
       <div style={{ position: 'relative', zIndex: 1, paddingTop: '140px', paddingBottom: '120px' }}>
         <div style={container}>
-          <h1 style={{ textAlign: 'center', fontFamily: "'Bebas Neue', 'Onest', sans-serif", fontSize: '40px', fontWeight: 400, color: '#111111', marginBottom: '64px' }}>
+          <h1 style={{ textAlign: 'center', fontFamily: "'Bebas Neue', 'Onest', sans-serif", fontSize: '40px', fontWeight: 400, color: '#f5f5f5', marginBottom: '64px' }}>
             Услуги
           </h1>
 
@@ -29,8 +29,8 @@ export default function Services() {
               className="spotlight-card"
               style={card}
             >
-              <h3 style={{ fontSize: '20px', fontWeight: 500, color: '#111111', marginBottom: '12px' }}>{s.title}</h3>
-              <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#5c5c58', marginBottom: '16px' }}>{s.desc}</p>
+              <h3 style={{ fontSize: '20px', fontWeight: 500, color: '#f5f5f5', marginBottom: '12px' }}>{s.title}</h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: '16px' }}>{s.desc}</p>
               <Link to={`/services/${s.slug}`} style={{ fontSize: '14px', color: '#14804f', textDecoration: 'none', fontWeight: 500 }}>Подробнее →</Link>
             </div>
           ))}

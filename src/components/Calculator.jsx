@@ -87,27 +87,27 @@ export default function Calculator() {
 
   if (sent) {
     return (
-      <div className="rounded-3xl border border-[#e3e2de] bg-white p-10 text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-50 text-[#14804f]">
+      <div className="rounded-3xl border border-white/10 bg-[#0d1110] p-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#79f2bf]/15 text-[#79f2bf]">
           <Check className="h-6 w-6" />
         </div>
-        <h3 className="text-lg font-medium text-[#111]">Заявка отправлена</h3>
-        <p className="mt-3 text-sm text-[#888]">Мы свяжемся с вами в ближайшее время.</p>
+        <h3 className="text-lg font-medium text-white">Заявка отправлена</h3>
+        <p className="mt-3 text-sm text-white/70">Мы свяжемся с вами в ближайшее время.</p>
       </div>
     )
   }
 
 if (done) {
   return (
-    <div className="rounded-3xl border border-[#e3e2de] bg-white p-10 text-center">
-      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-50 text-[#14804f]">
+    <div className="rounded-3xl border border-white/10 bg-[#0d1110] p-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#79f2bf]/15 text-[#79f2bf]">
         <Check className="h-6 w-6" />
       </div>
-      <h3 className="mb-2 text-lg font-medium text-[#111]">Анализ параметров завершен</h3>
-      <p className="mb-8 text-sm text-[#5c5c58]">Смета и состав поисковой группы сформированы.</p>
+      <h3 className="mb-2 text-lg font-medium text-white">Анализ параметров завершен</h3>
+      <p className="mb-8 text-sm text-white/70">Смета и состав поисковой группы сформированы.</p>
 
       {!showForm ? (
-        <button onClick={() => setShowForm(true)} className="rounded-full bg-[#14804f] px-6 py-3 text-sm font-medium text-white">
+        <button onClick={() => setShowForm(true)} className="rounded-full bg-[#79f2bf] px-6 py-3 text-sm font-medium text-[#07110d]">
           Оставить заявку
         </button>
       ) : (
@@ -121,18 +121,18 @@ if (done) {
   const q = questions[step]
 
   return (
-    <div className="rounded-3xl border border-[#e3e2de] bg-white p-8 md:p-10">
+    <div className="rounded-3xl border border-white/10 bg-[#0d1110] p-8 md:p-10">
       <AnimatePresence mode="wait">
         <motion.div key={step} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
           <div className="mb-8 flex items-center justify-between">
-            <span className="text-xs text-[#888]">Шаг {step + 1} из {questions.length}</span>
+            <span className="text-xs text-white/55">Шаг {step + 1} из {questions.length}</span>
             <div className="flex gap-1">
               {questions.map((_, i) => (
-                <div key={i} className={`h-1 w-6 rounded-full ${i <= step ? 'bg-[#14804f]' : 'bg-[#e3e2de]'}`} />
+                <div key={i} className={`h-1 w-6 rounded-full ${i <= step ? 'bg-[#79f2bf]' : 'bg-white/10'}`} />
               ))}
             </div>
           </div>
-          <h3 className="mb-8 text-lg font-medium leading-relaxed text-[#111]">{q.question}</h3>
+          <h3 className="mb-8 text-lg font-medium leading-relaxed text-white">{q.question}</h3>
 
           {!showCustomInput ? (
             <div className="space-y-3">
@@ -141,10 +141,10 @@ if (done) {
                   key={i}
                   disabled={loading}
                   onClick={() => handleAnswer(i, opt)}
-                  className="flex w-full items-center justify-between rounded-xl border border-[#e3e2de] bg-[#f7f7f5] px-6 py-4 text-left text-sm text-[#333] transition-all hover:border-[#14804f] hover:bg-[#14804f]/5 disabled:opacity-40"
+                  className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-[#101514] px-6 py-4 text-left text-sm text-white transition-all hover:border-[#79f2bf] hover:bg-[#79f2bf]/5 disabled:opacity-40"
                 >
                   {opt}
-                  <ChevronRight className="h-4 w-4 text-[#888]" />
+                  <ChevronRight className="h-4 w-4 text-white/60" />
                 </button>
               ))}
             </div>
@@ -155,18 +155,18 @@ if (done) {
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
                 placeholder="Уточните вариант..."
-                className="w-full rounded-xl border border-[#e3e2de] bg-white px-5 py-3.5 text-sm outline-none focus:border-[#14804f]"
+                className="w-full rounded-xl border border-white/10 bg-[#0b0f0e] px-5 py-3.5 text-sm text-white outline-none focus:border-[#79f2bf]"
               />
               <button
                 onClick={() => handleAnswer(q.options.length - 1, 'Другое')}
                 disabled={!customText.trim()}
-                className="w-full rounded-full bg-[#14804f] py-3 text-sm font-medium text-white disabled:opacity-40"
+                className="w-full rounded-full bg-[#79f2bf] py-3 text-sm font-medium text-[#07110d] disabled:opacity-40"
               >
                 Продолжить
               </button>
             </div>
           )}
-          {loading && <p className="mt-6 text-center text-xs text-[#888]">Формируем результат...</p>}
+          {loading && <p className="mt-6 text-center text-xs text-white/55">Формируем результат...</p>}
         </motion.div>
       </AnimatePresence>
     </div>

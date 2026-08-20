@@ -39,8 +39,16 @@ const authLimiter = rateLimit({
   message: { message: 'Слишком много попыток, попробуйте через 15 минут' },
 })
 
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:5174',
+  'http://127.0.0.1:5174',
+].filter(Boolean)
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5174',
+  origin: allowedOrigins,
   credentials: true,
 }))
 

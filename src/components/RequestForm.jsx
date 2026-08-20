@@ -36,8 +36,8 @@ export default function RequestForm({ source = 'direct', type = 'Общая за
 
   if (sent) {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-2xl border border-[#e3e2de] bg-[#f7f7f5] p-8 text-center">
-        <p className="text-[#111]">Заявка отправлена. Мы скоро свяжемся с вами.</p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+        <p className="text-white">Заявка отправлена. Мы скоро свяжемся с вами.</p>
       </motion.div>
     )
   }
