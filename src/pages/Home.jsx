@@ -153,14 +153,14 @@ export default function Home() {
     <div className="relative w-full bg-[#050807] text-white">
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="bg-grid absolute inset-0" />
-        <div className="glow-orb" />
+        <div className="glow-orb hidden md:block" />
       </div>
 
       <div className="relative z-10 w-full">
         {/* HERO */}
         <section className="relative overflow-hidden bg-[#050807] px-6 pb-16 pt-8 md:pt-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(33,255,177,0.18),_transparent_38%)]" />
-          <div className="absolute left-1/2 top-0 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#54e0ad]/18 blur-[80px]" />
+          <div className="absolute left-1/2 top-0 hidden h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#54e0ad]/18 blur-[80px] md:block" />
 
           <div className="relative mx-auto max-w-[1200px]">
             <div className="mx-auto flex max-w-[980px] flex-col items-start gap-10 lg:gap-14">
@@ -270,13 +270,13 @@ export default function Home() {
 
         {/* ПОЧЕМУ НАМ ДОВЕРЯЮТ — компактные карточки */}
         <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[1000px]">
+          <div className="mx-auto w-full max-w-[1300px]">
             <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="mb-4 text-center text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">
               Почему нам доверяют
             </motion.h2>
             <p className="mb-10 text-center font-display text-2xl text-white md:text-3xl">8 ключевых факторов</p>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
               {trustFactors.map((f, i) => (
                 <div key={i} className="rounded-xl border border-white/10 bg-[#0c1110] p-4 shadow-sm transition-all duration-200 hover:border-[#79f2bf]/50 hover:shadow-[0_0_0_1px_rgba(121,242,191,0.15)]">
                   <div className="mb-3 flex items-center justify-between">
@@ -284,8 +284,8 @@ export default function Home() {
                       0{i + 1}
                     </span>
                   </div>
-                  <h3 className="text-sm font-medium leading-snug text-white">{f.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-white/70">{f.subtitle}</p>
+                  <h3 className="text-[13px] font-medium leading-snug text-white md:text-sm">{f.title}</h3>
+                  <p className="mt-2 text-[11px] leading-relaxed text-white/70 md:text-xs">{f.subtitle}</p>
                 </div>
               ))}
             </div>
