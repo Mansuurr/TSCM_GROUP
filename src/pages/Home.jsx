@@ -149,15 +149,9 @@ export default function Home() {
     setQuizError(null)
   }
 
-  const handleCardMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
-    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
-  }
-
   return (
     <div className="relative w-full bg-[#050807] text-white">
-      <div className="pointer-events-none fixed inset-0 z-0">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <div className="bg-grid absolute inset-0" />
         <div className="glow-orb" />
       </div>
@@ -166,7 +160,7 @@ export default function Home() {
         {/* HERO */}
         <section className="relative overflow-hidden bg-[#050807] px-6 pb-16 pt-8 md:pt-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(33,255,177,0.18),_transparent_38%)]" />
-          <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#54e0ad]/25 blur-[120px]" />
+          <div className="absolute left-1/2 top-0 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#54e0ad]/18 blur-[80px]" />
 
           <div className="relative mx-auto max-w-[1200px]">
             <div className="mx-auto flex max-w-[980px] flex-col items-start gap-10 lg:gap-14">
@@ -310,9 +304,9 @@ export default function Home() {
                 <motion.div
                   key={s.slug}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
-                  onMouseMove={handleCardMouseMove}
                   className="spotlight-card service-card group rounded-2xl border border-white/10 bg-[#0c1110] p-8 transition-all duration-500 hover:border-[#79f2bf]/50"
                 >
                   <div className="service-card-header">
@@ -364,7 +358,8 @@ export default function Home() {
                 <motion.div
                   key={step.n}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="group flex flex-col gap-5"
                 >
@@ -399,9 +394,9 @@ export default function Home() {
                 <motion.div
                   key={s.label}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.1 }}
-                  onMouseMove={handleCardMouseMove}
                   className="spotlight-card rounded-2xl border border-white/10 bg-[#0d1110] p-6"
                 >
                   <p className="font-display text-3xl text-[#79f2bf]">{s.value}</p>
@@ -446,7 +441,8 @@ export default function Home() {
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
                 <p className="text-sm font-medium text-[#79f2bf]">Нелинейные локаторы</p>
@@ -454,7 +450,8 @@ export default function Home() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.1 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
@@ -463,7 +460,8 @@ export default function Home() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.2 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
@@ -472,7 +470,8 @@ export default function Home() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.3 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
@@ -481,7 +480,8 @@ export default function Home() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.4 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
@@ -490,7 +490,8 @@ export default function Home() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: 0.5 }}
                 className="rounded-2xl border border-white/10 bg-[#0d1110] p-8 text-center"
               >
@@ -530,9 +531,9 @@ export default function Home() {
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.1 }}
-                  onMouseMove={handleCardMouseMove}
                   className="spotlight-card overflow-hidden rounded-2xl border border-white/10 bg-[#0d1110]"
                 >
                   <img src={item.image} alt={item.label} loading="lazy" className="aspect-[16/10] w-full object-cover" />
