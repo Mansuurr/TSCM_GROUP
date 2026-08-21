@@ -84,6 +84,29 @@ body {
     black 40%,
     transparent 100%
   );
+
+  animation: gridDrift 28s linear infinite;
+}
+
+.bg-particles {
+  opacity: 0.28;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(121, 242, 191, 0.35) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 75% 22%, rgba(121, 242, 191, 0.22) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 64% 72%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 80%, rgba(121, 242, 191, 0.18) 0 1px, transparent 1.5px);
+  background-size: 240px 240px, 320px 320px, 280px 280px, 360px 360px;
+  animation: particlesDrift 32s linear infinite;
+}
+
+.bg-aurora {
+  opacity: 0.22;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(38, 184, 128, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(121, 242, 191, 0.08), transparent 24%),
+    radial-gradient(circle at 50% 62%, rgba(18, 108, 76, 0.14), transparent 34%);
+  filter: blur(18px);
+  animation: auroraShift 22s ease-in-out infinite alternate;
 }
 
 .glow-orb {
@@ -128,6 +151,19 @@ body {
   justify-content: center;
   gap: 16px;
   min-height: auto;
+}
+
+.hero-ambient-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(121, 242, 191, 0.12), transparent 28%),
+    linear-gradient(115deg, transparent 18%, rgba(121, 242, 191, 0.08) 36%, transparent 52%),
+    linear-gradient(65deg, transparent 56%, rgba(121, 242, 191, 0.06) 72%, transparent 88%);
+  background-size: auto, 180% 180%, 160% 160%;
+  animation: ambientSweep 18s ease-in-out infinite alternate;
 }
 
 .hero-panel {
@@ -355,7 +391,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .bg-grid,
+  .bg-particles,
+  .bg-aurora,
   .glow-orb,
+  .hero-ambient-lines,
   .hero-panel,
   .hero-scan-line,
   .hero-floating-stack .hero-float-card {
@@ -421,6 +461,48 @@ body {
   50% {
     transform: translate(-50%, -50%) scale(1.1);
     opacity: 1;
+  }
+}
+
+@keyframes gridDrift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 60px 30px, 30px 60px;
+  }
+}
+
+@keyframes particlesDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-18px, 24px, 0);
+  }
+}
+
+@keyframes auroraShift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+  }
+}
+
+@keyframes ambientSweep {
+  0% {
+    transform: translate3d(-1.5%, 0, 0);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate3d(1.5%, 0, 0);
+    opacity: 0.38;
   }
 }
 

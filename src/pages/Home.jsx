@@ -153,6 +153,8 @@ export default function Home() {
     <div className="relative w-full bg-[#050807] text-white">
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="bg-grid absolute inset-0" />
+        <div className="bg-particles absolute inset-0" />
+        <div className="bg-aurora absolute inset-0" />
         <div className="glow-orb hidden md:block" />
       </div>
 
@@ -161,10 +163,12 @@ export default function Home() {
         <section className="relative overflow-hidden bg-[#050807] px-6 pb-16 pt-8 md:pt-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(33,255,177,0.18),_transparent_38%)]" />
           <div className="absolute left-1/2 top-0 hidden h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#54e0ad]/18 blur-[80px] md:block" />
+          <div className="hero-ambient-lines hidden md:block" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(5,8,7,0)_0%,rgba(5,8,7,0.72)_58%,#050807_100%)] md:h-40" />
 
-          <div className="relative mx-auto max-w-[1200px]">
-            <div className="mx-auto flex max-w-[980px] flex-col items-start gap-10 lg:gap-14">
-              <div className="w-full">
+          <div className="relative mx-auto max-w-[1280px]">
+            <div className="mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[minmax(0,640px)_minmax(360px,400px)] lg:justify-between lg:gap-20 xl:grid-cols-[minmax(0,680px)_400px] xl:gap-24">
+              <div className="w-full lg:pr-8 xl:pr-10">
                 <motion.div custom={0} initial="hidden" animate="visible" variants={fadeUp} className="mb-6 flex items-center gap-3">
                   <span className="saq-brand-mark">SAQ</span>
                   <p className="text-xs font-medium tracking-[0.3em] text-[#a8d8c7] uppercase">
@@ -172,7 +176,7 @@ export default function Home() {
                   </p>
                 </motion.div>
 
-                <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[980px] text-[clamp(3rem,6vw,7rem)] leading-[0.9] tracking-[-0.06em] text-white">
+                <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[680px] text-[clamp(3rem,5vw,5.7rem)] leading-[0.92] tracking-[-0.06em] text-white">
                   Профессиональный поиск жучков и защита от слежки
                 </motion.h1>
 
@@ -194,7 +198,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="hero-visual w-full"
+                className="hero-visual w-full lg:justify-self-end lg:items-end"
               >
                 <div className="hero-panel">
                   <div className="hero-panel-top">
@@ -256,15 +260,19 @@ export default function Home() {
 
         {/* О НАС */}
         <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[900px] text-center">
-            <p className="mb-6 text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">О нас</p>
-            <p className="text-lg leading-relaxed text-white md:text-xl">
-              Мы — специализированная команда инженеров, радиотехников и специалистов по кибербезопасности. Наша миссия — исключить любые формы промышленного шпионажа, несанкционированного съёма информации и цифровых атак на ваш бизнес и личную жизнь.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-white/75">
-              В отличие от компаний, использующих бытовые детекторы поля, мы подходим к защите информации как к сложному физико-техническому процессу. В нашем распоряжении — программно-аппаратные комплексы экспертного уровня, нелинейные локаторы последней серии, анализаторы спектра и оптические системы обнаружения. Мы не просто находим шпионские устройства — мы выявляем и перекрываем каналы утечки данных ещё до того, как они нанесут ущерб.
-            </p>
-            <p className="mt-8 text-sm font-medium uppercase tracking-wider text-[#79f2bf]">Работаем по всему Казахстану</p>
+          <div className="mx-auto w-full max-w-[1240px]">
+            <p className="mb-6 text-center text-xs font-medium tracking-[0.25em] text-[#a8d8c7] uppercase">О нас</p>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
+              <p className="text-lg leading-relaxed text-white md:text-xl lg:text-[1.35rem]">
+                Мы — специализированная команда инженеров, радиотехников и специалистов по кибербезопасности. Наша миссия — исключить любые формы промышленного шпионажа, несанкционированного съёма информации и цифровых атак на ваш бизнес и личную жизнь.
+              </p>
+              <div>
+                <p className="text-base leading-relaxed text-white/75 md:text-lg">
+                  В отличие от компаний, использующих бытовые детекторы поля, мы подходим к защите информации как к сложному физико-техническому процессу. В нашем распоряжении — программно-аппаратные комплексы экспертного уровня, нелинейные локаторы последней серии, анализаторы спектра и оптические системы обнаружения. Мы не просто находим шпионские устройства — мы выявляем и перекрываем каналы утечки данных ещё до того, как они нанесут ущерб.
+                </p>
+                <p className="mt-8 text-sm font-medium uppercase tracking-wider text-[#79f2bf]">Работаем по всему Казахстану</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -546,6 +554,22 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ФОРМА ЗАЯВКИ */}
+        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
+          <div className="mx-auto w-full max-w-[1200px]">
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-[#0d1110] p-8 text-center md:p-16">
+              <div className="mx-auto w-full max-w-[500px]">
+                <h2 className="text-center text-2xl font-light text-white md:text-3xl">Заказать конфиденциальную проверку</h2>
+                <p className="mt-4 text-center text-sm text-white/70">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
+                <a href="#calculator" className="mt-10 inline-block rounded-full bg-[#79f2bf] px-10 py-4 text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf]">
+                  Оставить заявку
+                </a>
+                <p className="mt-6 text-center text-[11px] text-white/50">Все обращения строго конфиденциальны. Данные не передаются третьим лицам.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* КАЛЬКУЛЯТОР */}
         <section id="calculator" className="w-full bg-[#050807] px-6 py-24 md:py-28">
           <div className="mx-auto w-full max-w-[600px]">
@@ -615,22 +639,6 @@ export default function Home() {
                     </div>
                   </motion.div>
                 )}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ФОРМА ЗАЯВКИ */}
-        <section className="w-full bg-[#050807] px-6 py-24 md:py-28">
-          <div className="mx-auto w-full max-w-[1200px]">
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-[#0d1110] p-8 text-center md:p-16">
-              <div className="mx-auto w-full max-w-[500px]">
-                <h2 className="text-center text-2xl font-light text-white md:text-3xl">Заказать конфиденциальную проверку</h2>
-                <p className="mt-4 text-center text-sm text-white/70">Опишите ситуацию. Мы свяжемся с вами в защищённом канале связи в течение 10 минут.</p>
-                <a href="#calculator" className="mt-10 inline-block rounded-full bg-[#79f2bf] px-10 py-4 text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf]">
-                  Оставить заявку
-                </a>
-                <p className="mt-6 text-center text-[11px] text-white/50">Все обращения строго конфиденциальны. Данные не передаются третьим лицам.</p>
               </div>
             </motion.div>
           </div>
