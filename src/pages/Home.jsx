@@ -167,8 +167,8 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(5,8,7,0)_0%,rgba(5,8,7,0.72)_58%,#050807_100%)] md:h-40" />
 
           <div className="relative mx-auto max-w-[1280px]">
-            <div className="mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[minmax(0,640px)_minmax(360px,400px)] lg:justify-between lg:gap-20 xl:grid-cols-[minmax(0,680px)_400px] xl:gap-24">
-              <div className="w-full lg:pr-8 xl:pr-10">
+            <div className="mx-auto grid max-w-[1220px] items-center gap-8 sm:gap-10 lg:grid-cols-[minmax(0,640px)_minmax(360px,400px)] lg:justify-between lg:gap-20 xl:grid-cols-[minmax(0,680px)_400px] xl:gap-24">
+              <div className="w-full min-w-0 lg:pr-8 xl:pr-10">
                 <motion.div custom={0} initial="hidden" animate="visible" variants={fadeUp} className="mb-6 flex items-center gap-3">
                   <span className="saq-brand-mark">SAQ</span>
                   <p className="text-xs font-medium tracking-[0.3em] text-[#a8d8c7] uppercase">
@@ -176,19 +176,19 @@ export default function Home() {
                   </p>
                 </motion.div>
 
-                <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[680px] text-[clamp(3rem,5vw,5.7rem)] leading-[0.92] tracking-[-0.06em] text-white">
+                <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="font-display max-w-[680px] break-words text-[clamp(2.3rem,9.2vw,5.7rem)] leading-[0.94] tracking-[-0.05em] text-white sm:text-[clamp(2.8rem,8vw,5.7rem)] lg:text-[clamp(3rem,5vw,5.7rem)]">
                   Профессиональный поиск жучков и защита от слежки
                 </motion.h1>
 
-                <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="mt-8 max-w-[620px] text-base leading-relaxed text-white/75 md:text-lg">
+                <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="mt-6 max-w-[620px] text-sm leading-relaxed text-white/75 sm:mt-8 sm:text-base md:text-lg">
                   Проверка помещений, автомобилей и офисов сертифицированным оборудованием. Гарантируем конфиденциальность и выявление любых каналов утечки информации.
                 </motion.p>
 
-                <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <a href="#calculator" className="rounded-full bg-[#79f2bf] px-8 py-3.5 text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf]">
+                <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+                  <a href="#calculator" className="rounded-full bg-[#79f2bf] px-6 py-3.5 text-center text-sm font-medium text-[#07110d] transition-transform hover:scale-[1.02] hover:bg-[#98f8cf] sm:px-8">
                     Оставить заявку
                   </a>
-                  <a href="#quiz" className="flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/3 px-8 py-3.5 text-sm text-white transition-all hover:border-[#79f2bf] hover:text-[#79f2bf]">
+                  <a href="#quiz" className="flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/3 px-6 py-3.5 text-sm text-white transition-all hover:border-[#79f2bf] hover:text-[#79f2bf] sm:px-8">
                     Пройти тест <ArrowRight className="h-4 w-4" />
                   </a>
                 </motion.div>
