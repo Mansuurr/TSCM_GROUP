@@ -97,10 +97,10 @@ const faqItems = [
 ]
 
 const galleryItems = [
-  { image: '/1a.jpg', label: 'Нелинейный локатор в работе' },
-  { image: '/1b.png', label: 'Сканирование радиочастотного эфира' },
-  { image: '/1c.png', label: 'Проверка автомобиля на GPS-маяки' },
-  { image: '/1d.png', label: 'Поиск замаскированных микрокамер' },
+  { video: '/Specialist_sweeping_detector_aloΓÇª_202608182353.mp4', label: 'Поиск скрытых устройств детектором' },
+  { video: '/Smoke_detector_on_ceiling_202608212035.mp4', label: 'Осмотр потолочного датчика' },
+  { video: '/Monitoring_dashboard_screen_dispΓÇª_202608201847.mp4', label: 'Мониторинг сигналов в реальном времени' },
+  { video: '/Inspecting_car_door_sill_202608212035.mp4', label: 'Проверка автомобиля на скрытые устройства' },
 ]
 
 export default function Home() {
@@ -544,7 +544,16 @@ export default function Home() {
                   transition={{ delay: i * 0.1 }}
                   className="spotlight-card overflow-hidden rounded-2xl border border-white/10 bg-[#0d1110]"
                 >
-                  <img src={item.image} alt={item.label} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+                  <video
+                    src={item.video}
+                    className="aspect-[16/10] w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={item.label}
+                  />
                   <div className="p-6">
                     <p className="text-sm text-white/70">{item.label}</p>
                   </div>
