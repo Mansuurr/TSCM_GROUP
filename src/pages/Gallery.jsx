@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const galleryItems = [
   { video: '/Specialist_sweeping_detector_aloΓÇª_202608182353.mp4', label: 'Поиск скрытых устройств ручным детектором' },
-  { video: '/Smoke_detector_on_ceiling_202608212035.mp4', label: 'Обследование потолочного датчика' },
   { video: '/Monitoring_dashboard_screen_dispΓÇª_202608201847.mp4', label: 'Мониторинг и анализ сигналов' },
   { video: '/Inspecting_car_door_sill_202608212035.mp4', label: 'Осмотр автомобиля на скрытые устройства' },
   { video: '/Docking_station_circuit_board_viΓÇª_202608200525.mp4', label: 'Диагностика электронной платы' },

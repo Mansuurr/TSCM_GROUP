@@ -98,7 +98,7 @@ const faqItems = [
 
 const galleryItems = [
   { video: '/Specialist_sweeping_detector_aloΓÇª_202608182353.mp4', label: 'Поиск скрытых устройств детектором' },
-  { video: '/Smoke_detector_on_ceiling_202608212035.mp4', label: 'Осмотр потолочного датчика' },
+  { video: '/Docking_station_circuit_board_viΓÇª_202608200525.mp4', label: 'Диагностика электронной платы' },
   { video: '/Monitoring_dashboard_screen_dispΓÇª_202608201847.mp4', label: 'Мониторинг сигналов в реальном времени' },
   { video: '/Inspecting_car_door_sill_202608212035.mp4', label: 'Проверка автомобиля на скрытые устройства' },
 ]
